@@ -1,0 +1,66 @@
+#include "OPRT_KEY.h"
+
+OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
+{
+	/*_dir[static_cast<int>(DIR::UP)].first = cocos2d::Vec2(0, 1);
+	_dir[static_cast<int>(DIR::DOWN)].first = cocos2d::Vec2(0, -1);
+	_dir[static_cast<int>(DIR::RIGHT)].first = cocos2d::Vec2(1, 0);
+	_dir[static_cast<int>(DIR::LEFT)].first = cocos2d::Vec2(-1, 0);*/
+
+	for (auto key : _key)
+	{
+		key.second = false;
+	}
+	Init(sp);
+}
+
+void OPRT_KEY::Init(cocos2d::Node& sp)
+{
+	//キーが押されたときのイベント情報
+	auto ctlKey = cocos2d::EventListenerKeyboard::create();
+	ctlKey->onKeyPressed = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
+		for (int i = 0; i < static_cast<int>(KEY::MAX); i++)
+		{
+			if (keyCode == _keyTbl[i])
+			{
+				_key[i].second = true;
+			}
+
+		}
+		return true;
+	};
+
+	//キーから離れた時のイベント情報
+	ctlKey->onKeyReleased = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
+		for (int i = 0; i < static_cast<int>(KEY::MAX); i++)
+		{
+			if (keyCode == _keyTbl[i])
+			{
+				_key[i].second = false;
+			}
+		}
+		return true;
+	};
+
+	cocos2d::Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(ctlKey, &sp);
+}
+
+void OPRT_KEY::Update()
+{
+	//キー情報の新旧更新処理
+	for(int i = 0; i < static_cast<int>(KEY::MAX);i++)
+	{
+		_key[i].first = _key[i].second;
+	}
+
+	//_dirの分回してその移動判定がtrueの方向にだけ動かす
+	//for (auto dir : _dir)
+	//{
+	//	if (dir.second == true)
+	//	{
+	//		//sp->setPosition(sp->getPosition() + dir.first * sp->speed());
+	//		auto action = cocos2d::MoveBy::create(1 / 60.0f, dir.first * sp.speed());
+	//		sp.runAction(action);
+	//	}
+	//}
+}

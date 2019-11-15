@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="debug">
+      <UniqueIdentifier>{5872cb40-76fc-4ead-a28c-bdf8480d97cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{0d6f5325-a1a2-4d18-9cc6-13df024d26fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="unit">
+      <UniqueIdentifier>{e326306e-bf68-41f1-b0fe-4cf2f0670de1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="singlton">
+      <UniqueIdentifier>{36b39b04-a8fa-4690-a40b-bb73b35394ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="move">
+      <UniqueIdentifier>{9b8aff0b-62cc-4838-af75-6b549e15cefc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\debug\_DebugConOut.cpp">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\debug\_DebugGraph.cpp">
+      <Filter>debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\input\OPRT_KEY.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\input\OPRT_TOUCH.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\unit\Enemy.cpp">
+      <Filter>unit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\unit\player.cpp">
+      <Filter>unit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\unit\Obj.cpp">
+      <Filter>unit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnimCtl.cpp">
+      <Filter>singlton</Filter>
+    </ClCompile>
+    <ClCompile Include="CheckHitObj.cpp" />
+    <ClCompile Include="..\Classes\move\MoveCtl.cpp">
+      <Filter>move</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\move\MovIdle.cpp">
+      <Filter>move</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\move\MovJump.cpp">
+      <Filter>move</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\move\MovLR.cpp">
+      <Filter>move</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\debug\_DebugConOut.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\debug\_DebugGraph.h">
+      <Filter>debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input\OPRT.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input\OPRT_KEY.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\input\OPRT_TOUCH.h">
+      <Filter>input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\unit\Enemy.h">
+      <Filter>unit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\unit\player.h">
+      <Filter>unit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\unit\Obj.h">
+      <Filter>unit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnimCtl.h">
+      <Filter>singlton</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckHitObj.h" />
+    <ClInclude Include="..\Classes\move\MoveCtl.h">
+      <Filter>move</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\move\MovIdle.h">
+      <Filter>move</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\move\MovJump.h">
+      <Filter>move</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\move\MovLR.h">
+      <Filter>move</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
