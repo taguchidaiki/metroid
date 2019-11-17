@@ -1,4 +1,4 @@
-#ifdef _DEBUG
+ï»¿#ifdef _DEBUG
 #include <windows.h>
 #include "_DebugConOut.h"
 
@@ -6,26 +6,26 @@ std::unique_ptr<_DebugConOut, _DebugConOut::_DebugConOutDeleter> _DebugConOut::s
 
 _DebugConOut::_DebugConOut()
 {
-	//•\¦‡”Ô‚ÌŒÅ’è
-	//HWND hWnd = GetForegroundWindow();				//‘O‚É‚ ‚éƒEƒCƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹‚ğæ“¾
+	//è¡¨ç¤ºé †ç•ªã®å›ºå®š
+	//HWND hWnd = GetForegroundWindow();				//å‰ã«ã‚ã‚‹ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 
-	//ƒRƒ“ƒ\[ƒ‹•\¦—p‚ÌŠÖ”
+	//ã‚³ãƒ³ã‚½ãƒ¼ãƒ«è¡¨ç¤ºç”¨ã®é–¢æ•°
 	AllocConsole();
 
-	//ƒRƒ“ƒ\[ƒ‹‚Ö‚Ì•¶š‚Ìo—Í
-	freopen_s(&_debugFp,"CONOUT$","w",stdout);			//‘æ2 CONOUT$, ‘æ3 "w"write‚Ì—ª, ‘æ4@stdout
+	//ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã¸ã®æ–‡å­—ã®å‡ºåŠ›
+	freopen_s(&_debugFp,"CONOUT$","w",stdout);			//ç¬¬2 CONOUT$, ç¬¬3 "w"writeã®ç•¥, ç¬¬4ã€€stdout
 
-	//ƒRƒ“ƒ\[ƒ‹‚Ö‚Ì•¶š‚Ì“ü—Í
+	//ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã¸ã®æ–‡å­—ã®å…¥åŠ›
 	freopen_s(&_debugFp, "CONIN$", "r", stdin);
 
-	//ƒnƒ“ƒhƒ‹‚Ìİ’è
+	//ãƒãƒ³ãƒ‰ãƒ«ã®è¨­å®š
 	//SetForegroundWindow(hWnd);
 }
 
 
 _DebugConOut::~_DebugConOut()
 {
-	//ƒRƒ“ƒ\[ƒ‹‰ğ•ú—p‚ÌŠÖ”
+	//ã‚³ãƒ³ã‚½ãƒ¼ãƒ«è§£æ”¾ç”¨ã®é–¢æ•°
 	FreeConsole();
 }
 #endif //_DEBUG

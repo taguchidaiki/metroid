@@ -1,7 +1,5 @@
 #include "Obj.h"
 
-
-
 Obj::Obj()
 {
 	_oprtState = nullptr;

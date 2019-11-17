@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Obj.h"
 
 class player :
@@ -8,15 +8,15 @@ public:
 	player();
 	~player();
 	
-	//¶¬—pŠÖ”
+	//ç”Ÿæˆç”¨é–¢æ•°
 	static cocos2d::Sprite* createPlayer(void);
 	static player* create(void);
 
-	//NodeŒp³‚µ‚½‰Šú‰»ŠÖ”
+	//Nodeç¶™æ‰¿ã—ãŸåˆæœŸåŒ–é–¢æ•°
 	bool init(void)override;
 	void update(float delta)override;
 
-	//getŠÖ”
+	//geté–¢æ•°
 	
 private:
 	STATE _state;

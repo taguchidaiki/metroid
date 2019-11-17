@@ -4,6 +4,7 @@
 
 #define lpMoveCtl MoveCtl::GetInstance()
 
+
 //行動につかうパーツ群
 struct ActMojule
 {
@@ -12,6 +13,7 @@ struct ActMojule
 	std::list<STATE> blackList;
 	std::list<std::function<bool(cocos2d::Sprite&, ActMojule&)>> actionList;
 	std::function<bool(cocos2d::Sprite&, ActMojule&)> runAction;
+	cocos2d::Vec2 vec;
 };
 
 class MoveCtl
@@ -23,7 +25,8 @@ public:
 		return getInstance;
 	}
 
-	void AddActMojule(std::string actName, ActMojule& actMojule);
+	void AddActMojule(std::string actName, ActMojule& act);
+	void ActUpdate(std::string actName, cocos2d::Sprite& sp);
 
 private:
 	MoveCtl() {};

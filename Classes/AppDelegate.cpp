@@ -1,4 +1,4 @@
-/****************************************************************************
+Ôªø/****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
@@ -83,7 +83,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto glview = director->getOpenGLView();
     if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-		//SetWindowtext Ç∆ SetWindowSizeÇçáÇÌÇπÇΩÇ‚Ç¬
+		//SetWindowtext „Å® SetWindowSize„ÇíÂêà„Çè„Åõ„Åü„ÇÑ„Å§
         glview = GLViewImpl::createWithRect("cocos2dx", cocos2d::Rect(0, 0, mediumResolutionSize.width, mediumResolutionSize.height));
 #else
         glview = GLViewImpl::create("cocos2dx");

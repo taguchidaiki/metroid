@@ -1,4 +1,4 @@
-#ifdef _DEBUG
+ï»¿#ifdef _DEBUG
 #include "_DebugGraph.h"
 
 std::unique_ptr<_DebugGraph, _DebugGraph::_DebugGraphDeleter>_DebugGraph::s_Instance(new _DebugGraph);
@@ -84,7 +84,7 @@ bool _DebugGraph::DrawBoxCC(cocos2d::Scene& scene, const cocos2d::Node & sp)
 	return true;
 }
 
-//“–‚½‚è”»’è‚ğ–Ú‹‚µ‚½‚¢ƒIƒuƒWƒFƒNƒg©gAColor4F‚ÌƒRƒ“ƒeƒ“ƒc‚à‚µ‚­‚ÍColor4f(r,g,b,ƒ¿)
+//å½“ãŸã‚Šåˆ¤å®šã‚’ç›®è¦–ã—ãŸã„ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè‡ªèº«ã€Color4Fã®ã‚³ãƒ³ãƒ†ãƒ³ãƒ„ã‚‚ã—ãã¯Color4f(r,g,b,Î±)
 bool _DebugGraph::DrawBoxCC(cocos2d::Sprite & sp, cocos2d::Color4F color)
 {
 	auto square = cocos2d::DrawNode::create();

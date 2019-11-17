@@ -1,4 +1,4 @@
-#include "player.h"
+ï»¿#include "player.h"
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "input/OPRT_KEY.h"
 #else
@@ -38,7 +38,30 @@ bool player::init(void)
 
 	_speed = 3.0f;
 	
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì“o˜^ˆ—
+	{
+		ActMojule act;
+		act.stateID = STATE::RUN;
+		act.whiteList.emplace_back();
+		lpMoveCtl.AddActMojule("player-run",act);
+	}
+	{
+		ActMojule act;
+		act.stateID = STATE::RUNNING;
+	}
+	{
+		ActMojule act;
+		act.stateID = STATE::IDLE;
+	}
+	{
+		ActMojule act;
+		act.stateID = STATE::FALL;
+	}
+	{
+		ActMojule act;
+		act.stateID = STATE::FALLING;
+	}
+	
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ç™»éŒ²å‡¦ç†
 	lpAnimCtl.addAnimation("player", "player-idle", 0.2f);
 	lpAnimCtl.addAnimation("player", "player-run", 0.1f);
 	lpAnimCtl.addAnimation("player", "player-run-shot", 0.1f);
@@ -63,6 +86,7 @@ void player::update(float delta)
 	auto oldPos = getPosition();*/
 
 	_oprtState->Update();
+	lpMoveCtl.ActUpdate("player-run",(*this));
 	
 	//if (oldPos != getPosition())
 	//{
@@ -87,7 +111,7 @@ void player::update(float delta)
 		_flip = true;
 	}*/
 
-	////±ÆÒ°¼®ÝXVŽž‚Ü‚½‚ÍŒ»Ý‚Ì±ÆÒ°¼®Ý‚ªI—¹‚µ‚½‚Æ‚«
+	////ï½±ï¾†ï¾’ï½°ï½¼ï½®ï¾æ›´æ–°æ™‚ã¾ãŸã¯ç¾åœ¨ã®ï½±ï¾†ï¾’ï½°ï½¼ï½®ï¾ãŒçµ‚äº†ã—ãŸã¨ã
 	//if ((_stateName != _oldStateName))
 	//{
 	//	stopAllActions();
@@ -105,7 +129,7 @@ void player::update(float delta)
 	//	{
 	//		if (auto checkObj = (TMXTiledMap*)hitNode->getTileAt(Vec2(x, y)))
 	//		{
-	//			//ŠÈˆÕ“–‚½‚è”»’èˆ—
+	//			//ç°¡æ˜“å½“ãŸã‚Šåˆ¤å®šå‡¦ç†
 	//			if ((checkObj->getPosition().x <= getPosition().x + _rect.size.width / 2)
 	//				&&(checkObj->getPosition().x + hitScene->getTileSize().width >= getPosition().x - _rect.size.width / 2)
 	//				&&(checkObj->getPosition().y >= getPosition().y - _rect.size.height / 2)

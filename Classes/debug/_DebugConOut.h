@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #ifdef _DEBUG
 #include <Windows.h>
 #include <memory>
@@ -18,7 +18,7 @@ public:
 	}
 	
 private:
-	//ƒfƒŠ[ƒ^[
+	//ãƒ‡ãƒªãƒ¼ã‚¿ãƒ¼
 	struct _DebugConOutDeleter 
 	{
 		void operator()(_DebugConOut* debugConOut)const
@@ -33,7 +33,7 @@ private:
 	//static _DebugConOut *s_Instance;
 	static std::unique_ptr<_DebugConOut, _DebugConOutDeleter> s_Instance;
 
-	//ƒfƒoƒbƒN—p‚Ìƒtƒ@ƒCƒ‹‚Ìƒ|ƒCƒ“ƒ^
+	//ãƒ‡ãƒãƒƒã‚¯ç”¨ã®ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒã‚¤ãƒ³ã‚¿
 	FILE* _debugFp = nullptr;					
 };
 #else

@@ -1,10 +1,11 @@
 #pragma once
 #include "cocos2d.h"
 #include "AnimCtl.h"
+#include <list>
+#ifdef _DEBUG
 #include "debug/_DebugConOut.h"
 #include "debug/_DebugGraph.h"
-#include <list>
-#include <functional>
+#endif
 
 enum class STATE
 {
@@ -21,7 +22,6 @@ enum class STATE
 
 struct OPRT;
 
-
 class Obj:
 	public cocos2d::Sprite
 {
@@ -33,8 +33,10 @@ public:
 	void update(float delta) = 0;
 
 	//get関数
+	const float speed(void) { return _speed; };
 
 	//set関数
+	void speed(float speed) { _speed = speed; };
 
 protected:
 	//キー入力モジュール用

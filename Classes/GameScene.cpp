@@ -1,4 +1,4 @@
-/****************************************************************************
+ï»¿/****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  
  http://www.cocos2d-x.org
@@ -133,25 +133,25 @@ bool GameScene::init()
 	//auto action = Animate::create(animation);
 	//auto anime = Spawn::create(RepeatForever::create(action), FlipX::create(true));
 	//sprite->runAction(anime);
-	//”wŒi—pƒŒƒCƒ„[¶¬
+	//èƒŒæ™¯ç”¨ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”Ÿæˆ
 
 	auto layer = Layer::create();
 	layer->setName("hitObj");
 
-	//“–‚½‚è”»’è—p”wŒi
+	//å½“ãŸã‚Šåˆ¤å®šç”¨èƒŒæ™¯
 	auto pTiled = TMXTiledMap::create("mapdata/mapdata-1.tmx");
 	pTiled->setName("map");
 	layer->addChild(pTiled,0);
 
-	//ƒvƒŒƒCƒ„[¶¬
+	//ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ç”Ÿæˆ
 	auto pl = player::createPlayer();
 	pl->setName("player");
 	layer->addChild(pl, 1);
 
-	//ƒŒƒCƒ„[‚ðƒQ[ƒ€ƒV[ƒ“‚ÌŽq‚É’Ç‰Á
+	//ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã®å­ã«è¿½åŠ 
 	this->addChild(layer, 0);
 
-	//ˆÊ’u‚ð–ÚŽ‹‚ÅŠm”F‚·‚é‚æ‚¤‚ÌüiŒã‚ÅÁ‚·j
+	//ä½ç½®ã‚’ç›®è¦–ã§ç¢ºèªã™ã‚‹ã‚ˆã†ã®ç·šï¼ˆå¾Œã§æ¶ˆã™ï¼‰
 	/*for (int i = 0; i <= 5; i++)
 	{
 		auto line = DrawNode::create();
