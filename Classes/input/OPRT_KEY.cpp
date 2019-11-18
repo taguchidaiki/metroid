@@ -7,9 +7,10 @@ OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
 	_dir[static_cast<int>(DIR::RIGHT)].first = cocos2d::Vec2(1, 0);
 	_dir[static_cast<int>(DIR::LEFT)].first = cocos2d::Vec2(-1, 0);*/
 
-	for (auto key : _key)
+	for (int i = 0; i < static_cast<int>(KEY::MAX); i++)
 	{
-		key.second = false;
+		std::get<0>(_key[i]) = static_cast<KEY>(i);
+		std::get<2>(_key[i]) = false;
 	}
 	Init(sp);
 }
@@ -23,7 +24,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 		{
 			if (keyCode == _keyTbl[i])
 			{
-				_key[i].second = true;
+				std::get<2>(_key[i]) = true;
 			}
 
 		}
@@ -36,7 +37,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 		{
 			if (keyCode == _keyTbl[i])
 			{
-				_key[i].second = false;
+				std::get<2>(_key[i]) = false;
 			}
 		}
 		return true;
@@ -50,7 +51,7 @@ void OPRT_KEY::Update()
 	//キー情報の新旧更新処理
 	for(int i = 0; i < static_cast<int>(KEY::MAX);i++)
 	{
-		_key[i].first = _key[i].second;
+		std::get<1>(_key[i]) = std::get<2>(_key[i]);
 	}
 
 	//_dirの分回してその移動判定がtrueの方向にだけ動かす

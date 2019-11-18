@@ -1,7 +1,7 @@
 #pragma once
-#include "MoveCtl.h"
-#include "unit/Obj.h"
+#include "move/MoveCtl.h"
 
-struct MovLR{
+struct CheckHitObj {
 	bool operator()(cocos2d::Sprite& sp, ActMojule& act);
 };
+

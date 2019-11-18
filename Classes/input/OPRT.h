@@ -1,8 +1,5 @@
 #pragma once
 #include "cocos2d.h"
-#include "AnimCtl.h"
-#include "move/MoveCtl.h"
-#include "unit/Obj.h"
 #include <map>
 #include <array>
 
@@ -34,14 +31,14 @@ struct OPRT
 	virtual void Update() = 0;
 
 	//get関数
-	std::array<std::pair<bool,bool>, static_cast<int>(KEY::MAX)> key(void) { return _key; };
+	std::array<std::tuple<KEY,bool,bool>, static_cast<int>(KEY::MAX)> key(void) { return _key; };
 	
 protected:
 	//移動方向の情報 _dir[移動方向のベクトル,その方向に移動するかどうか]
 	//std::array<std::pair<cocos2d::Vec2,bool>, static_cast<int>(DIR::MAX)> _key;
 
 	//キーの入力情報　_dir[キーの情報] first old情報 second now情報
-	std::array<std::pair<bool, bool>, static_cast<int>(KEY::MAX)> _key;
+	std::array<std::tuple<KEY, bool, bool>, static_cast<int>(KEY::MAX)> _key;
 
 	//cocos2dxのキー情報から必要なものだけ回収したテーブル
 	KEY_TYPE _keyTbl[static_cast<int>(KEY::MAX)] = {

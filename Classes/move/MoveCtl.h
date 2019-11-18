@@ -1,9 +1,21 @@
 #pragma once
 #include "cocos2d.h"
-#include "unit/Obj.h"
+#include "input/OPRT.h"
 
 #define lpMoveCtl MoveCtl::GetInstance()
 
+enum class STATE
+{
+	IDLE,
+	JUMP,
+	JUMPING,
+	RUN,
+	RUNNING,
+	FALL,
+	FALLING,
+	RUN_SHOT,
+	MAX
+};
 
 //行動につかうパーツ群
 struct ActMojule
@@ -13,6 +25,7 @@ struct ActMojule
 	std::list<STATE> blackList;
 	std::list<std::function<bool(cocos2d::Sprite&, ActMojule&)>> actionList;
 	std::function<bool(cocos2d::Sprite&, ActMojule&)> runAction;
+	std::list<std::tuple<KEY, bool, bool>> keyList;
 	cocos2d::Vec2 vec;
 };
 
@@ -26,7 +39,7 @@ public:
 	}
 
 	void AddActMojule(std::string actName, ActMojule& act);
-	void ActUpdate(std::string actName, cocos2d::Sprite& sp);
+	std::unique_ptr<OPRT> ActUpdate(std::string actName, cocos2d::Sprite& sp, std::unique_ptr<OPRT> oprt);
 
 private:
 	MoveCtl() {};

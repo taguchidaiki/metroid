@@ -5,6 +5,7 @@ struct OPRT_KEY :public OPRT
 {
 	
 	OPRT_KEY(cocos2d::Node& sp);
+	~OPRT_KEY() {};
 
 	//‰Šú‰»ŠÖ”
 	void Init(cocos2d::Node& sp) override;

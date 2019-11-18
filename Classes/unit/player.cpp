@@ -1,4 +1,5 @@
 ﻿#include "player.h"
+#include "move/MovLR.h"
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "input/OPRT_KEY.h"
 #else
@@ -41,11 +42,16 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUN;
-		act.whiteList.emplace_back();
+		act.keyList.emplace_back(KEY::RIGHT, false, true);
+		act.keyList.emplace_back(KEY::LEFT, false, true);
+		act.runAction = MovLR();
 		lpMoveCtl.AddActMojule("player-run",act);
 	}
 	{
 		ActMojule act;
+		act.keyList.emplace_back(KEY::RIGHT, true, true);
+		act.keyList.emplace_back(KEY::LEFT, true, true);
+		act.runAction = MovLR();
 		act.stateID = STATE::RUNNING;
 	}
 	{
@@ -70,9 +76,11 @@ bool player::init(void)
 	_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	_oprtState = new OPRT_KEY((*this));
+	_oprtState = std::make_unique<OPRT_KEY>((*this));
+	//_oprtState = new OPRT_KEY((*this));
 #else
-	_oprtState = new OPRT_TOUCH((*this));
+	//_oprtState = new OPRT_TOUCH((*this));
+	_oprtState = std::make_unique<OPRT_TOUCH>((*this));
 #endif
 
 	this->scheduleUpdate();
@@ -86,7 +94,8 @@ void player::update(float delta)
 	auto oldPos = getPosition();*/
 
 	_oprtState->Update();
-	lpMoveCtl.ActUpdate("player-run",(*this));
+
+	_oprtState = lpMoveCtl.ActUpdate("",(*this),std::move(_oprtState));
 	
 	//if (oldPos != getPosition())
 	//{
