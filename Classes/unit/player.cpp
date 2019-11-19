@@ -38,30 +38,35 @@ bool player::init(void)
 	setPosition(cocos2d::Vec2(200, 100));
 
 	_speed = 3.0f;
-	
+	//左右移動
 	{
 		ActMojule act;
 		act.stateID = STATE::RUN;
-		act.keyList.emplace_back(KEY::RIGHT, false, true);
-		act.keyList.emplace_back(KEY::LEFT, false, true);
+		act.keyList.emplace_back(KEY::M_RIGHT, false, true);
+		act.keyList.emplace_back(KEY::M_LEFT, false, true);
 		act.runAction = MovLR();
 		lpMoveCtl.AddActMojule("player-run",act);
 	}
+	//ダッシュ中
 	{
 		ActMojule act;
-		act.keyList.emplace_back(KEY::RIGHT, true, true);
-		act.keyList.emplace_back(KEY::LEFT, true, true);
-		act.runAction = MovLR();
 		act.stateID = STATE::RUNNING;
+		act.keyList.emplace_back(KEY::M_RIGHT, true, true);
+		act.keyList.emplace_back(KEY::M_LEFT, true, true);
+		act.runAction = MovLR();
+		
 	}
+	//待機中
 	{
 		ActMojule act;
 		act.stateID = STATE::IDLE;
 	}
+	//落下
 	{
 		ActMojule act;
 		act.stateID = STATE::FALL;
 	}
+	//落下中
 	{
 		ActMojule act;
 		act.stateID = STATE::FALLING;

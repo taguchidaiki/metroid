@@ -47,5 +47,5 @@ private:
 	MoveCtl& operator=(MoveCtl&) {};
 	~MoveCtl() {};
 
-	std::map<std::string, ActMojule> _actMojule;
+	std::map<std::string, ActMojule> _actList;
 };

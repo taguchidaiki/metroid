@@ -23,9 +23,11 @@ public:
 
 	//get関数
 	const float speed(void) { return _speed; };
+	const ActMojule act(void) { return _act; };
 
 	//set関数
 	void speed(float speed) { _speed = speed; };
+	void act(ActMojule act) { _act = act; };
 
 protected:
 	//キー入力モジュール用

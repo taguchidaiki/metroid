@@ -7,10 +7,10 @@
 
 enum class KEY
 {
-	Z,
-	SPACE,
-	RIGHT,
-	LEFT,
+	SHOT,
+	JUMP,
+	M_RIGHT,
+	M_LEFT,
 	MAX
 };
 
