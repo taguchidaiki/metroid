@@ -25,9 +25,14 @@ struct ActMojule
 	std::list<STATE> blackList;
 	//std::list<std::function<bool(cocos2d::Sprite&, ActMojule&)>> actionList;
 	std::function<bool(cocos2d::Sprite&, ActMojule&)> runAction;
-	std::list<std::tuple<PTN, bool, bool>> keyList;
+	std::tuple<PTN, bool, bool> keyData;
 	cocos2d::Vec2 vec;
 	std::pair<cocos2d::Vec2, cocos2d::Vec2> hitRect;
+
+	ActMojule operator=(const ActMojule& act)
+	{
+		return act;
+	}
 };
 
 class MoveCtl
@@ -40,7 +45,8 @@ public:
 	}
 
 	void AddActMojule(std::string actName, ActMojule& act);
-	std::unique_ptr<OPRT> ActUpdate(std::string actName, cocos2d::Sprite& sp, std::unique_ptr<OPRT> oprt);
+	bool SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt);
+	void ActUpdate(std::string actName, cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt);
 
 private:
 	MoveCtl() {};

@@ -17,7 +17,8 @@ public:
 	void update(float delta)override;
 
 	//get関数
-	
+
+
 private:
 	STATE _state;
 };

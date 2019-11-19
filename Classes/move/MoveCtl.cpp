@@ -8,20 +8,25 @@ void MoveCtl::AddActMojule(std::string actName, ActMojule & act)
 	_actList.try_emplace(actName, act);
 }
 
-std::unique_ptr<OPRT> MoveCtl::ActUpdate(std::string actName, cocos2d::Sprite & sp, std::unique_ptr<OPRT> oprt)
+bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 {
-	static_cast<Obj&>(sp).act(_actList.at(actName));
-
-	for (auto keyData : oprt->key())
+	for (auto keyData : oprt.lock()->key())
 	{
-		for (auto key : static_cast<Obj&>(sp).act().keyList)
+		for (auto actData : _actList)
 		{
-			if (keyData == key)
+			if (actData.second.keyData == keyData)
 			{
-				int i = 0;
+				static_cast<Obj&>(sp).act(actData.second);
 			}
 		}
 	}
+	return true;
+}
+
+void MoveCtl::ActUpdate(std::string actName, cocos2d::Sprite & sp, std::weak_ptr<OPRT> oprt)
+{
+	//static_cast<Obj&>(sp).act(_actList.at(actName));
+
 	
-	return std::move(oprt);
+	
 }

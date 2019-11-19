@@ -5,6 +5,6 @@
 
 struct CheckKeyData
 {
-	std::unique_ptr<OPRT> operator()(std::unique_ptr<OPRT> oprt);
+	void operator()(std::weak_ptr<OPRT> oprt);
 };
 

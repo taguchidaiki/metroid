@@ -40,43 +40,60 @@ bool player::init(void)
 	setPosition(cocos2d::Vec2(200, 100));
 
 	_speed = 3.0f;
-	//左右移動
+	//右移動
 	{
 		ActMojule act;
 		act.stateID = STATE::RUN;
-		act.keyList.emplace_back(PTN::M_RIGHT, false, true);
-		act.keyList.emplace_back(PTN::M_LEFT, false, true);
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, false, true);
 		act.runAction = MovLR();
-		lpMoveCtl.AddActMojule("player-run",act);
+		act.vec = cocos2d::Vec2(1, 0);
+		lpMoveCtl.AddActMojule("player-run-r",act);
 	}
-	//ダッシュ中
+	//左移動
+	{
+		ActMojule act;
+		act.stateID = STATE::RUN;
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, false, true);
+		act.runAction = MovLR();
+		act.vec = cocos2d::Vec2(-1, 0);
+		lpMoveCtl.AddActMojule("player-run-l", act);
+	}
+	//右ダッシュ中
 	{
 		ActMojule act;
 		act.stateID = STATE::RUNNING;
-		act.keyList.emplace_back(PTN::M_RIGHT, true, true);
-		act.keyList.emplace_back(PTN::M_LEFT, true, true);
+		act.keyData = std::tuple<PTN,bool,bool>(PTN::M_RIGHT, true, true);
 		act.runAction = MovLR();
-		lpMoveCtl.AddActMojule("player-running", act);
+		act.vec = cocos2d::Vec2(1, 0);
+		lpMoveCtl.AddActMojule("player-running-r", act);
 	}
-	//待機中
+	//左ダッシュ中
 	{
 		ActMojule act;
-		act.stateID = STATE::IDLE;
-		act.vec = cocos2d::Vec2(0, 0);
-		act.runAction = MovIdle();
-		lpMoveCtl.AddActMojule("player-idle", act);
-		_act = act;
+		act.stateID = STATE::RUNNING;
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, true, true);
+		act.runAction = MovLR();
+		act.vec = cocos2d::Vec2(-1, 0);
+		lpMoveCtl.AddActMojule("player-running-l", act);
 	}
-	//落下
-	{
-		ActMojule act;
-		act.stateID = STATE::FALL;
-	}
-	//落下中
-	{
-		ActMojule act;
-		act.stateID = STATE::FALLING;
-	}
+	////待機中
+	//{
+	//	ActMojule act;
+	//	act.stateID = STATE::IDLE;
+	//	act.vec = cocos2d::Vec2(0, 0);
+	//	act.runAction = MovIdle();
+	//	lpMoveCtl.AddActMojule("player-idle", act);
+	//}
+	////落下
+	//{
+	//	ActMojule act;
+	//	act.stateID = STATE::FALL;
+	//}
+	////落下中
+	//{
+	//	ActMojule act;
+	//	act.stateID = STATE::FALLING;
+	//}
 	
 	//アニメーションの登録処理
 	lpAnimCtl.addAnimation("player", "player-idle", 0.2f);
@@ -87,7 +104,7 @@ bool player::init(void)
 	_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	_oprtState = std::make_unique<OPRT_KEY>((*this));
+	_oprtState = std::make_shared<OPRT_KEY>((*this));
 	//_oprtState = new OPRT_KEY((*this));
 #else
 	//_oprtState = new OPRT_TOUCH((*this));
@@ -106,8 +123,11 @@ void player::update(float delta)
 
 	_oprtState->Update();
 
-	_oprtState = lpMoveCtl.ActUpdate("player-run",(*this),std::move(_oprtState));
+	lpMoveCtl.SetActState((*this),_oprtState);
+
+	lpMoveCtl.ActUpdate("",(*this),_oprtState);
 	
+
 	//if (oldPos != getPosition())
 	//{
 	//	TRACE("x = %f y = %f\n", getPosition().x, getPosition().y);
@@ -162,3 +182,4 @@ void player::update(float delta)
 	//}
 	
 }
+
