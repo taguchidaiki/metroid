@@ -1,9 +1,10 @@
 #pragma once
 #include "move/MoveCtl.h"
-#include "unit/Obj.h"
+#include "input/OPRT.h"
+#include <memory>
 
-struct CheckKey
+struct CheckKeyData
 {
-	bool operator()(cocos2d::Sprite& sp, ActMojule& act);
+	std::unique_ptr<OPRT> operator()(std::unique_ptr<OPRT> oprt);
 };
 

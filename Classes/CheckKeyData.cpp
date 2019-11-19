@@ -1,7 +1,7 @@
 #include "CheckKeyData.h"
 
-bool CheckKey::operator()(cocos2d::Sprite & sp, ActMojule & act)
+std::unique_ptr<OPRT> CheckKeyData::operator()(std::unique_ptr<OPRT> oprt)
 {
-
-	return false;
+	
+	return std::move(oprt);
 }

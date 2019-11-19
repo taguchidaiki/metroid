@@ -1,5 +1,7 @@
 ﻿#include "player.h"
 #include "move/MovLR.h"
+#include "move/MovIdle.h"
+#include "move/MovJump.h"
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "input/OPRT_KEY.h"
 #else
@@ -42,8 +44,8 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUN;
-		act.keyList.emplace_back(KEY::M_RIGHT, false, true);
-		act.keyList.emplace_back(KEY::M_LEFT, false, true);
+		act.keyList.emplace_back(PTN::M_RIGHT, false, true);
+		act.keyList.emplace_back(PTN::M_LEFT, false, true);
 		act.runAction = MovLR();
 		lpMoveCtl.AddActMojule("player-run",act);
 	}
@@ -51,15 +53,19 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUNNING;
-		act.keyList.emplace_back(KEY::M_RIGHT, true, true);
-		act.keyList.emplace_back(KEY::M_LEFT, true, true);
+		act.keyList.emplace_back(PTN::M_RIGHT, true, true);
+		act.keyList.emplace_back(PTN::M_LEFT, true, true);
 		act.runAction = MovLR();
-		
+		lpMoveCtl.AddActMojule("player-running", act);
 	}
 	//待機中
 	{
 		ActMojule act;
 		act.stateID = STATE::IDLE;
+		act.vec = cocos2d::Vec2(0, 0);
+		act.runAction = MovIdle();
+		lpMoveCtl.AddActMojule("player-idle", act);
+		_act = act;
 	}
 	//落下
 	{
@@ -100,7 +106,7 @@ void player::update(float delta)
 
 	_oprtState->Update();
 
-	_oprtState = lpMoveCtl.ActUpdate("",(*this),std::move(_oprtState));
+	_oprtState = lpMoveCtl.ActUpdate("player-run",(*this),std::move(_oprtState));
 	
 	//if (oldPos != getPosition())
 	//{

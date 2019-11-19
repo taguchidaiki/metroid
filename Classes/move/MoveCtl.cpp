@@ -1,5 +1,6 @@
 #include "MoveCtl.h"
 #include "MovLR.h"
+#include "MovIdle.h"
 #include "CheckKeyData.h"
 
 void MoveCtl::AddActMojule(std::string actName, ActMojule & act)
@@ -9,13 +10,17 @@ void MoveCtl::AddActMojule(std::string actName, ActMojule & act)
 
 std::unique_ptr<OPRT> MoveCtl::ActUpdate(std::string actName, cocos2d::Sprite & sp, std::unique_ptr<OPRT> oprt)
 {
-	for (auto key : oprt->key())
+	static_cast<Obj&>(sp).act(_actList.at(actName));
+
+	for (auto keyData : oprt->key())
 	{
-		for (auto actData : _actList)
+		for (auto key : static_cast<Obj&>(sp).act().keyList)
 		{
-			
+			if (keyData == key)
+			{
+				int i = 0;
+			}
 		}
-		//static_cast<Obj&>(sp).act();
 	}
 	
 	return std::move(oprt);

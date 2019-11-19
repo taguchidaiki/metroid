@@ -23,10 +23,11 @@ struct ActMojule
 	STATE stateID;
 	std::list<STATE> whiteList;
 	std::list<STATE> blackList;
-	std::list<std::function<bool(cocos2d::Sprite&, ActMojule&)>> actionList;
+	//std::list<std::function<bool(cocos2d::Sprite&, ActMojule&)>> actionList;
 	std::function<bool(cocos2d::Sprite&, ActMojule&)> runAction;
-	std::list<std::tuple<KEY, bool, bool>> keyList;
+	std::list<std::tuple<PTN, bool, bool>> keyList;
 	cocos2d::Vec2 vec;
+	std::pair<cocos2d::Vec2, cocos2d::Vec2> hitRect;
 };
 
 class MoveCtl

@@ -7,9 +7,9 @@ OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
 	_dir[static_cast<int>(DIR::RIGHT)].first = cocos2d::Vec2(1, 0);
 	_dir[static_cast<int>(DIR::LEFT)].first = cocos2d::Vec2(-1, 0);*/
 
-	for (int i = 0; i < static_cast<int>(KEY::MAX); i++)
+	for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
 	{
-		std::get<0>(_key[i]) = static_cast<KEY>(i);
+		std::get<0>(_key[i]) = static_cast<PTN>(i);
 		std::get<2>(_key[i]) = false;
 	}
 	Init(sp);
@@ -20,7 +20,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 	//キーが押されたときのイベント情報
 	auto ctlKey = cocos2d::EventListenerKeyboard::create();
 	ctlKey->onKeyPressed = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
-		for (int i = 0; i < static_cast<int>(KEY::MAX); i++)
+		for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
 		{
 			if (keyCode == _keyTbl[i])
 			{
@@ -33,7 +33,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 
 	//キーから離れた時のイベント情報
 	ctlKey->onKeyReleased = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
-		for (int i = 0; i < static_cast<int>(KEY::MAX); i++)
+		for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
 		{
 			if (keyCode == _keyTbl[i])
 			{
@@ -49,7 +49,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 void OPRT_KEY::Update()
 {
 	//キー情報の新旧更新処理
-	for(int i = 0; i < static_cast<int>(KEY::MAX);i++)
+	for(int i = 0; i < static_cast<int>(PTN::MAX);i++)
 	{
 		std::get<1>(_key[i]) = std::get<2>(_key[i]);
 	}

@@ -27,12 +27,11 @@ public:
 
 	//set関数
 	void speed(float speed) { _speed = speed; };
-	void act(ActMojule act) { _act = act; };
+	void act(ActMojule& act) { _act = act; };
 
 protected:
 	//キー入力モジュール用
 	std::unique_ptr<OPRT> _oprtState;
-	//OPRT* _oprtState;
 
 	//アニメーション用ポインタ変数
 	cocos2d::Action* _action;
@@ -48,7 +47,7 @@ protected:
 
 	ActMojule _act;
 
-	std::string _stateName;
-	std::string _oldStateName;
+	/*std::string _stateName;
+	std::string _oldStateName;*/
 };
 
