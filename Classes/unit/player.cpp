@@ -1,7 +1,5 @@
 ﻿#include "player.h"
-#include "move/MovLR.h"
-#include "move/MovIdle.h"
-#include "move/MovJump.h"
+#include "MojuleHeader.h"
 #if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "input/OPRT_KEY.h"
 #else
@@ -45,6 +43,8 @@ bool player::init(void)
 		ActMojule act;
 		act.stateID = STATE::RUN;
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, false, true);
+		act.actionList.emplace_back(CheckList());
+		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
 		act.vec = cocos2d::Vec2(1, 0);
 		lpMoveCtl.AddActMojule("player-run-r",act);
@@ -76,14 +76,14 @@ bool player::init(void)
 		act.vec = cocos2d::Vec2(-1, 0);
 		lpMoveCtl.AddActMojule("player-running-l", act);
 	}
-	////待機中
-	//{
-	//	ActMojule act;
-	//	act.stateID = STATE::IDLE;
-	//	act.vec = cocos2d::Vec2(0, 0);
-	//	act.runAction = MovIdle();
-	//	lpMoveCtl.AddActMojule("player-idle", act);
-	//}
+	//待機中
+	/*{
+		ActMojule act;
+		act.stateID = STATE::IDLE;
+		act.vec = cocos2d::Vec2(0, 0);
+		act.runAction = MovIdle();
+		lpMoveCtl.AddActMojule("player-idle", act);
+	}*/
 	////落下
 	//{
 	//	ActMojule act;
@@ -108,7 +108,7 @@ bool player::init(void)
 	//_oprtState = new OPRT_KEY((*this));
 #else
 	//_oprtState = new OPRT_TOUCH((*this));
-	_oprtState = std::make_unique<OPRT_TOUCH>((*this));
+	_oprtState = std::make_shared<OPRT_TOUCH>((*this));
 #endif
 
 	this->scheduleUpdate();

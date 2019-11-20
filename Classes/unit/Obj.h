@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "AnimCtl.h"
-#include "move/MoveCtl.h"
+#include "MoveCtl.h"
 #include <list>
 #include <memory>
 #ifdef _DEBUG
