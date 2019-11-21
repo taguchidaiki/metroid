@@ -42,10 +42,10 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUN;
-		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, false, true);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, false, true);
 		act.vec = cocos2d::Vec2(1, 0);
 		lpMoveCtl.AddActMojule("player-run-r",act);
 	}
@@ -53,6 +53,8 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUN;
+		act.actionList.emplace_back(CheckList());
+		act.actionList.emplace_back(CheckHitObj());
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, false, true);
 		act.runAction = MovLR();
 		act.vec = cocos2d::Vec2(-1, 0);
@@ -62,8 +64,10 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUNNING;
-		act.keyData = std::tuple<PTN,bool,bool>(PTN::M_RIGHT, true, true);
+		act.actionList.emplace_back(CheckList());
+		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, true, true);
 		act.vec = cocos2d::Vec2(1, 0);
 		lpMoveCtl.AddActMojule("player-running-r", act);
 	}
@@ -71,19 +75,23 @@ bool player::init(void)
 	{
 		ActMojule act;
 		act.stateID = STATE::RUNNING;
-		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, true, true);
+		act.actionList.emplace_back(CheckList());
+		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, true, true);
 		act.vec = cocos2d::Vec2(-1, 0);
 		lpMoveCtl.AddActMojule("player-running-l", act);
 	}
 	//待機中
-	/*{
+	{
 		ActMojule act;
 		act.stateID = STATE::IDLE;
-		act.vec = cocos2d::Vec2(0, 0);
+		act.actionList.emplace_back(CheckList());
+		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovIdle();
+		act.vec = cocos2d::Vec2(0, 0);
 		lpMoveCtl.AddActMojule("player-idle", act);
-	}*/
+	}
 	////落下
 	//{
 	//	ActMojule act;
@@ -105,9 +113,7 @@ bool player::init(void)
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	_oprtState = std::make_shared<OPRT_KEY>((*this));
-	//_oprtState = new OPRT_KEY((*this));
 #else
-	//_oprtState = new OPRT_TOUCH((*this));
 	_oprtState = std::make_shared<OPRT_TOUCH>((*this));
 #endif
 
@@ -123,10 +129,9 @@ void player::update(float delta)
 
 	_oprtState->Update();
 
-	lpMoveCtl.SetActState((*this),_oprtState);
+	lpMoveCtl.SetActState((*this),_act,_oprtState);
 
-	lpMoveCtl.ActUpdate("",(*this),_oprtState);
-	
+	lpMoveCtl.ActUpdate((*this),_act);
 
 	//if (oldPos != getPosition())
 	//{

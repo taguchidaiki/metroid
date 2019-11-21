@@ -28,7 +28,7 @@ void AnimCtl::addAnimation(std::string fileName, std::string key, float animIntv
 	cocos2d::AnimationCache::getInstance()->addAnimation(animation, key);
 }
 
-//アニメーションのキー名、リピートフラグ
+//アニメーションのキー名、継続して流すかどうかのフラグ、
 cocos2d::Action * AnimCtl::getAction(cocos2d::Node* sp,std::string key, bool repeat, bool flip)
 {
 	cocos2d::Action* action;

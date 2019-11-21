@@ -51,7 +51,6 @@ void OPRT_KEY::Update()
 	//キー情報の新旧更新処理
 	for(int i = 0; i < static_cast<int>(PTN::MAX);i++)
 	{
-		
 		std::get<1>(_key[i]) = std::get<2>(_key[i]);
 	}
 

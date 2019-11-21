@@ -3,5 +3,5 @@
 
 struct CheckList
 {
-	void operator()(cocos2d::Sprite& sp, ActMojule& act);
+	bool operator()(cocos2d::Sprite& sp, ActMojule& act);
 };

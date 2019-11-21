@@ -23,11 +23,11 @@ public:
 
 	//get関数
 	const float speed(void) { return _speed; };
-	const std::list<ActMojule> act(void) { return _act; };
-
+	ActMojule act(void) { return _act; };
+	
 	//set関数
 	void speed(float speed) { _speed = speed; };
-	void act(ActMojule& actData) { _act.emplace_back(actData); };
+	void act(ActMojule& actData) { _act = actData; };
 
 protected:
 	//キー入力モジュール用
@@ -42,7 +42,7 @@ protected:
 	//反転用のフラグ
 	bool _flip;
 
-	std::list<ActMojule> _act;
+	ActMojule _act;
 
 	//std::string _stateName;
 	//std::string _oldStateName;
