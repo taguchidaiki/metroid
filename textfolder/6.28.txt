@@ -1,0 +1,22 @@
+6.28
+
+宿題　キャラクターが動くようにする
+
+enum class は基底の型を変更することができる
+enumは初期がintで設定されているがenum classは変更可
+変更するためには<type_traits>のincludeが必要
+使用命令はINPUT_ID(std::underlying_type<INPUT_ID>::type(key))
+
+enum classで++をするためにはその基底の型が何なのかを調べてそいつを+1してあげないといけない
+
+----------------------------------------------------------------
+playerでkeystateをインクルード
+ユニークポインタで_inputを作成
+イニットでユニークポインタを生成(make_unique)
+player側でupdateの作成
+update内でinputのupdateを呼びだす
+
+
+f1を押したらenum classの順番にキーを設定できるキーコンフィグ機能を追加
+
+
