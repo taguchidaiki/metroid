@@ -41,56 +41,93 @@ bool player::init(void)
 	//右移動
 	{
 		ActMojule act;
-		act.stateID = STATE::RUN;
+		act.stateName = "player-run-r";
+		act.stateID = STATE::MOVE_R;
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
-		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, false, true);
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_R, false, true);
 		act.vec = cocos2d::Vec2(1, 0);
-		lpMoveCtl.AddActMojule("player-run-r",act);
+		act.flip = false;
+		lpMoveCtl.AddActMojule(act.stateName,act);
 	}
 	//左移動
 	{
 		ActMojule act;
-		act.stateID = STATE::RUN;
+		act.stateName = "player-run-l";
+		act.stateID = STATE::MOVE_L;
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
-		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, false, true);
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_L, false, true);
 		act.runAction = MovLR();
 		act.vec = cocos2d::Vec2(-1, 0);
-		lpMoveCtl.AddActMojule("player-run-l", act);
+		act.flip = true;
+		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//右ダッシュ中
 	{
 		ActMojule act;
-		act.stateID = STATE::RUNNING;
+		act.stateName = "player-running-r";
+		act.stateID = STATE::MOVE_R;
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
-		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_RIGHT, true, true);
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_R, true, true);
 		act.vec = cocos2d::Vec2(1, 0);
-		lpMoveCtl.AddActMojule("player-running-r", act);
+		act.flip = false;
+		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//左ダッシュ中
 	{
 		ActMojule act;
-		act.stateID = STATE::RUNNING;
+		act.stateName = "player-running-l";
+		act.stateID = STATE::MOVE_L;
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
-		act.keyData = std::tuple<PTN, bool, bool>(PTN::M_LEFT, true, true);
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_L, true, true);
 		act.vec = cocos2d::Vec2(-1, 0);
-		lpMoveCtl.AddActMojule("player-running-l", act);
+		act.flip = true;
+		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//待機中
 	{
 		ActMojule act;
+		act.stateName = "player-idle";
 		act.stateID = STATE::IDLE;
+		act.whiteList.emplace_back(STATE::MOVE_L);
+		act.whiteList.emplace_back(STATE::MOVE_R);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovIdle();
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::NON_KEY, true, true);
 		act.vec = cocos2d::Vec2(0, 0);
-		lpMoveCtl.AddActMojule("player-idle", act);
+		lpMoveCtl.AddActMojule(act.stateName, act);	
+		_stateName = act.stateName;
+	}
+	//ジャンプ
+	{
+		ActMojule act;
+		act.stateName = "player-jump";
+		act.stateID = STATE::JUMP;
+		act.runAction = MovJump();
+		act.keyData = act.keyData = std::tuple<PTN, bool, bool>(PTN::JUMP, false, true);
+		act.vec = cocos2d::Vec2(0, 1);
+		lpMoveCtl.AddActMojule(act.stateName, act);
+	}
+	//ジャンプ中
+	{
+		ActMojule act;
+		act.stateName = "player-jumping";
+		act.stateID = STATE::JUMPING;
+		act.blackList.emplace_back(STATE::FALLING);
+		act.whiteList.emplace_back(STATE::MOVE_R);
+		act.whiteList.emplace_back(STATE::MOVE_L);
+		act.runAction = MovJump();
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::NON_KEY, true, true);
+		act.vec = cocos2d::Vec2(0, 1);
+		lpMoveCtl.AddActMojule(act.stateName, act);
+
 	}
 	////落下
 	//{
@@ -102,7 +139,7 @@ bool player::init(void)
 	//	ActMojule act;
 	//	act.stateID = STATE::FALLING;
 	//}
-	
+
 	//アニメーションの登録処理
 	lpAnimCtl.addAnimation("player", "player-idle", 0.2f);
 	lpAnimCtl.addAnimation("player", "player-run", 0.1f);
@@ -124,28 +161,11 @@ bool player::init(void)
 
 void player::update(float delta)
 {
-	/*_oldStateName = _stateName;
-	auto oldPos = getPosition();*/
+	lpMoveCtl.SetActState((*this),_oprtState);
+
+	lpMoveCtl.ActUpdate((*this));
 
 	_oprtState->Update();
-
-	lpMoveCtl.SetActState((*this),_act,_oprtState);
-
-	lpMoveCtl.ActUpdate((*this),_act);
-
-	//if (oldPos != getPosition())
-	//{
-	//	TRACE("x = %f y = %f\n", getPosition().x, getPosition().y);
-	//}
-
-	/*if (_oprtState->dir()[static_cast<int>(KEY::RIGHT)].second || _oprtState->dir()[static_cast<int>(KEY::LEFT)].second)
-	{
-		_stateName = "player-run";
-	}
-	else if(_oprtState->dir()[static_cast<int>(KEY::SPACE)].second)
-	{
-		_stateName = "player-idle";
-	}*/
 
 	/*if (_oprtState->dir()[static_cast<int>(KEY::RIGHT)].second)
 	{

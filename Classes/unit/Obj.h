@@ -2,7 +2,6 @@
 #include "cocos2d.h"
 #include "AnimCtl.h"
 #include "MoveCtl.h"
-#include <list>
 #include <memory>
 #ifdef _DEBUG
 #include "debug/_DebugConOut.h"
@@ -23,11 +22,13 @@ public:
 
 	//get関数
 	const float speed(void) { return _speed; };
-	ActMojule act(void) { return _act; };
+	//const ActMojule act(void) { return _act; };
+	const std::string stateName(void) { return _stateName; }
 	
 	//set関数
 	void speed(float speed) { _speed = speed; };
-	void act(ActMojule& actData) { _act = actData; };
+	//void act(ActMojule& actData) { _act = actData; };
+	void stateName(std::string stateName) { _stateName = stateName; }
 
 protected:
 	//キー入力モジュール用
@@ -39,10 +40,14 @@ protected:
 	//オブジェクトの移動速度
 	float _speed;
 
-	//反転用のフラグ
-	bool _flip;
+	//行動に使う情報群
+	//ActMojule _act;
 
-	ActMojule _act;
+	std::string _stateName;
+	////反転用のフラグ
+	//bool _flip;
+
+	
 
 	//std::string _stateName;
 	//std::string _oldStateName;

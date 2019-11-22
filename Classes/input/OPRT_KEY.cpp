@@ -2,11 +2,6 @@
 
 OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
 {
-	/*_dir[static_cast<int>(DIR::UP)].first = cocos2d::Vec2(0, 1);
-	_dir[static_cast<int>(DIR::DOWN)].first = cocos2d::Vec2(0, -1);
-	_dir[static_cast<int>(DIR::RIGHT)].first = cocos2d::Vec2(1, 0);
-	_dir[static_cast<int>(DIR::LEFT)].first = cocos2d::Vec2(-1, 0);*/
-
 	for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
 	{
 		std::get<0>(_key[i]) = static_cast<PTN>(i);

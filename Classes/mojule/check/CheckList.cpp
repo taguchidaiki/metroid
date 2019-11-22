@@ -3,17 +3,17 @@
 
 bool CheckList::operator()(cocos2d::Sprite& sp, ActMojule& act)
 {
-	for (auto list : act.blackList)
+	for (auto list : lpMoveCtl.GetActData(((Obj&)sp).stateName()).blackList)
 	{
-		if (((Obj&)sp).act().stateID == list)
+		if (act.stateID == list)
 		{
 			return false;
 		}
 	}
 	
-	for (auto list : act.whiteList)
+	for (auto list : lpMoveCtl.GetActData(((Obj&)sp).stateName()).whiteList)
 	{
-		if (((Obj&)sp).act().stateID == list)
+		if (act.stateID == list)
 		{
 			return true;
 		}
