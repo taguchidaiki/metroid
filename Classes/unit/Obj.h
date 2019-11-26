@@ -22,34 +22,29 @@ public:
 
 	//get関数
 	const float speed(void) { return _speed; };
-	//const ActMojule act(void) { return _act; };
 	const std::string stateName(void) { return _stateName; }
 	
 	//set関数
 	void speed(float speed) { _speed = speed; };
-	//void act(ActMojule& actData) { _act = actData; };
 	void stateName(std::string stateName) { _stateName = stateName; }
 
 protected:
 	//キー入力モジュール用
 	std::shared_ptr<OPRT> _oprtState;
 
+	
 	//アニメーション用ポインタ変数
 	cocos2d::Action* _action;
 
 	//オブジェクトの移動速度
 	float _speed;
 
-	//行動に使う情報群
-	//ActMojule _act;
-
+	//キャラの行動用の名前
 	std::string _stateName;
+
 	////反転用のフラグ
 	//bool _flip;
 
-	
-
-	//std::string _stateName;
 	//std::string _oldStateName;
 };
 
