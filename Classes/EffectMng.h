@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "Effekseer/Effekseer.h"
 #include <map>
+#include <memory>
 
 #define lpEffectCtl EffectMng::getInstance()
 
@@ -15,16 +16,18 @@ public:
 		return getInstance;
 	}
 
-	void AddEffection(std::string effectName, float size = 1.0f);
+	void AddEffect(efk::EffectManager* manager, std::string effectName, float size = 1.0f);
 
-	efk::Effect* GetEffectData(std::string effectName);
+	efk::EffectEmitter* GetEffectData(std::string effectName);
 
 private:
 	EffectMng() {};
 	EffectMng(const EffectMng&) {};
 	EffectMng& operator=(const EffectMng&) {};
-	~EffectMng() {} ;
-	
-	std::map<std::string, efk::Effect*> _effectList;
+	~EffectMng();
+
+	//std::map<std::string, efk::Effect*> _effectList;
+	std::map<std::string, efk::EffectEmitter*> _effectList;
+
 };
 

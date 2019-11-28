@@ -1,20 +1,27 @@
 #include "EffectMng.h"
 
-void EffectMng::AddEffection(std::string effectName, float size = 1.0f)
+void EffectMng::AddEffect(efk::EffectManager* manager, std::string effectName, float size)
 {
+	//エフェクトネームからリストを検索かけてなかったら登録する
 	if (_effectList.find(effectName) == _effectList.end())
 	{
-		std::string effectdir = "effect/" + effectName;
-		_effectList.emplace(effectName,efk::Effect::create(effectdir,size));
+		std::string effectdir = "effect/" + effectName + ".efk";
+		_effectList.emplace(effectName,efk::EffectEmitter::create(manager,effectdir,size));
+		_effectList[effectName]->autorelease();
 	}
 }
 
-efk::Effect* EffectMng::GetEffectData(std::string effectName)
+efk::EffectEmitter* EffectMng::GetEffectData(std::string effectName)
 {
 	if (_effectList.find(effectName) == _effectList.end())
 	{
-		return nullptr;
+		
 	}
-
+	
 	return _effectList[effectName];
+}
+
+EffectMng::~EffectMng()
+{
+	
 }
