@@ -37,7 +37,7 @@ bool HelloWorld::init()
 
 void HelloWorld::update(float delta)
 {
-
+	lpEffectCtl.Update();
 	// Effect1
 	if (count % 300 == 0)
 	{

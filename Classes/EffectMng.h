@@ -18,7 +18,10 @@ public:
 
 	void AddEffect(efk::EffectManager* manager, std::string effectName, float size = 1.0f);
 
+	void Update(void);
+
 	efk::EffectEmitter* GetEffectData(std::string effectName);
+
 
 private:
 	EffectMng() {};
@@ -26,8 +29,7 @@ private:
 	EffectMng& operator=(const EffectMng&) {};
 	~EffectMng();
 
-	//std::map<std::string, efk::Effect*> _effectList;
-	std::map<std::string, efk::EffectEmitter*> _effectList;
+	std::map < std::string, std::pair<efk::Effect*, efk::EffectEmitter*>> _effectList;
 
 };
 
