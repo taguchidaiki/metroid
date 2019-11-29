@@ -184,5 +184,14 @@ void GameScene::menuCloseCallback(Ref* pSender)
 
 void GameScene::update(float delta)
 {
-	
+	lpEffectCtl.Update();
+}
+
+void GameScene::visit(cocos2d::Renderer * renderer, const cocos2d::Mat4 & parentTransform, uint32_t parentFlags)
+{
+	lpEffectCtl.manager().begin(renderer, _globalZOrder);
+
+	cocos2d::Scene::visit(renderer, parentTransform, parentFlags);
+
+	lpEffectCtl.manager().end(renderer, _globalZOrder);
 }

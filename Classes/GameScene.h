@@ -29,6 +29,7 @@
 #include "input/OPRT_KEY.h"
 #include "input/OPRT_TOUCH.h"
 #include "AnimCtl.h"
+#include "EffectMng.h"
 #include "unit/player.h"
 #include "debug/_DebugGraph.h"
 
@@ -47,6 +48,8 @@ public:
     
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
+
+	virtual void visit(cocos2d::Renderer *renderer, const cocos2d::Mat4& parentTransform, uint32_t parentFlags) override;
 
 private:
 	

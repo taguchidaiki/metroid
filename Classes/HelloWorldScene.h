@@ -3,6 +3,9 @@
 
 #include "cocos2d.h"
 #include "EffectMng.h"
+#include "ck/ck.h"
+#include "ck/config.h"
+#include "ck/sound.h"
 
 /**
 	必ずEffekseer.hをインクルードする必要があります
@@ -13,23 +16,18 @@
 
 	你必须包括Effekseer.h
 */
-#include "Effekseer/Effekseer.h"
 
 class HelloWorld : public cocos2d::Scene
 {
 private:
 	/**
 		efk::EffectManager*をレイヤーのメンバ変数に追加します。このクラスはエフェクトを管理します。
-
-		You add efk :: EffectManager * to the layer member variable. This class manages effects.
-
-		您將efk :: EffectManager *添加到圖層成員變量。 這個類管理效果。
-
-		您将efk :: EffectManager *添加到图层成员变量。 这个类管理效果。
 	*/
-	efk::EffectManager*		manager = nullptr;
 
 	int count = 0;
+
+	CkSound* sound;
+
 public:
     static cocos2d::Scene* createScene();
 
@@ -40,6 +38,7 @@ public:
 
 	virtual void visit(cocos2d::Renderer *renderer, const cocos2d::Mat4& parentTransform, uint32_t parentFlags) override;
     CREATE_FUNC(HelloWorld);
+
 };
 
 //#endif // __HELLOWORLD_SCENE_H__
