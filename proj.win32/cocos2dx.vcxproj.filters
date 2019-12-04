@@ -22,8 +22,14 @@
     <Filter Include="singlton">
       <UniqueIdentifier>{36b39b04-a8fa-4690-a40b-bb73b35394ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="move">
+    <Filter Include="mojule">
       <UniqueIdentifier>{9b8aff0b-62cc-4838-af75-6b549e15cefc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="effekseer">
+      <UniqueIdentifier>{051c3061-2db0-4379-8342-6dcc1d24d54b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{7dc9ebe0-e887-4a9d-a8c0-1faca4b30b81}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,9 +37,6 @@
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\debug\_DebugConOut.cpp">
@@ -60,18 +63,47 @@
     <ClCompile Include="..\Classes\AnimCtl.cpp">
       <Filter>singlton</Filter>
     </ClCompile>
-    <ClCompile Include="CheckHitObj.cpp" />
-    <ClCompile Include="..\Classes\move\MoveCtl.cpp">
-      <Filter>move</Filter>
+    <ClCompile Include="..\Classes\mojule\move\MovFall.cpp">
+      <Filter>mojule</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\move\MovIdle.cpp">
-      <Filter>move</Filter>
+    <ClCompile Include="..\Classes\mojule\move\MovIdle.cpp">
+      <Filter>mojule</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\move\MovJump.cpp">
-      <Filter>move</Filter>
+    <ClCompile Include="..\Classes\mojule\move\MovJump.cpp">
+      <Filter>mojule</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\move\MovLR.cpp">
-      <Filter>move</Filter>
+    <ClCompile Include="..\Classes\mojule\move\MovLR.cpp">
+      <Filter>mojule</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mojule\check\CheckHitObj.cpp">
+      <Filter>mojule</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mojule\check\CheckKeyData.cpp">
+      <Filter>mojule</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\mojule\check\CheckList.cpp">
+      <Filter>mojule</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MoveCtl.cpp">
+      <Filter>singlton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effekseer\Effekseer.cpp">
+      <Filter>effekseer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effekseer\EffekseerNative.cpp">
+      <Filter>effekseer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Effekseer\EffekseerRendererNative.cpp">
+      <Filter>effekseer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\EffectMng.cpp">
+      <Filter>singlton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,9 +111,6 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameScene.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\debug\_DebugConOut.h">
@@ -111,18 +140,48 @@
     <ClInclude Include="..\Classes\AnimCtl.h">
       <Filter>singlton</Filter>
     </ClInclude>
-    <ClInclude Include="CheckHitObj.h" />
-    <ClInclude Include="..\Classes\move\MoveCtl.h">
-      <Filter>move</Filter>
+    <ClInclude Include="..\Classes\MojuleHeader.h" />
+    <ClInclude Include="..\Classes\mojule\move\MovFall.h">
+      <Filter>mojule</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\move\MovIdle.h">
-      <Filter>move</Filter>
+    <ClInclude Include="..\Classes\mojule\move\MovIdle.h">
+      <Filter>mojule</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\move\MovJump.h">
-      <Filter>move</Filter>
+    <ClInclude Include="..\Classes\mojule\move\MovJump.h">
+      <Filter>mojule</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\move\MovLR.h">
-      <Filter>move</Filter>
+    <ClInclude Include="..\Classes\mojule\move\MovLR.h">
+      <Filter>mojule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mojule\check\CheckHitObj.h">
+      <Filter>mojule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mojule\check\CheckKeyData.h">
+      <Filter>mojule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\mojule\check\CheckList.h">
+      <Filter>mojule</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MoveCtl.h">
+      <Filter>singlton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effekseer\Effekseer.h">
+      <Filter>effekseer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effekseer\EffekseerNative.h">
+      <Filter>effekseer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Effekseer\EffekseerRendererNative.h">
+      <Filter>effekseer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\EffectMng.h">
+      <Filter>singlton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

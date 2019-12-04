@@ -78,7 +78,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)external;$(EngineRoot)cocos\audio\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)external;$(EngineRoot)cocos\audio\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);D:\~\Mycocos\cocos2dx\cricket\1.6.7\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -91,9 +91,9 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END);D:\~\Mycocos\cocos2dx\cricket\1.6.7\lib\win\vs15.0\x86\DebugDynamic\ck.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END);D:\~\Mycocos\cocos2dx\cricket\1.6.7\lib\win\vs15.0\x86\DebugDynamic</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -120,7 +120,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)external;$(EngineRoot)cocos\audio\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)external;$(EngineRoot)cocos\audio\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);D:\~\Mycocos\cocos2dx\cricket\1.6.7\inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -132,9 +132,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END);D:\~\Mycocos\cocos2dx\cricket\1.6.7\lib\win\vs15.0\x86\DebugDynamic\ck.lib</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END);D:\~\Mycocos\cocos2dx\cricket\1.6.7\lib\win\vs15.0\x86\DebugDynamic</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -155,15 +155,23 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\debug\_DebugConOut.cpp" />
     <ClCompile Include="..\Classes\debug\_DebugGraph.cpp" />
+    <ClCompile Include="..\Classes\EffectMng.cpp" />
+    <ClCompile Include="..\Classes\Effekseer\Effekseer.cpp" />
+    <ClCompile Include="..\Classes\Effekseer\EffekseerNative.cpp" />
+    <ClCompile Include="..\Classes\Effekseer\EffekseerRendererNative.cpp" />
     <ClCompile Include="..\Classes\GameScene.cpp" />
-    <ClCompile Include="..\Classes\move\MoveCtl.cpp" />
-    <ClCompile Include="..\Classes\move\MovIdle.cpp" />
-    <ClCompile Include="..\Classes\move\MovJump.cpp" />
-    <ClCompile Include="..\Classes\move\MovLR.cpp" />
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\mojule\check\CheckHitObj.cpp" />
+    <ClCompile Include="..\Classes\mojule\check\CheckKeyData.cpp" />
+    <ClCompile Include="..\Classes\mojule\check\CheckList.cpp" />
+    <ClCompile Include="..\Classes\mojule\move\MovFall.cpp" />
+    <ClCompile Include="..\Classes\mojule\move\MovIdle.cpp" />
+    <ClCompile Include="..\Classes\mojule\move\MovJump.cpp" />
+    <ClCompile Include="..\Classes\mojule\move\MovLR.cpp" />
+    <ClCompile Include="..\Classes\MoveCtl.cpp" />
     <ClCompile Include="..\Classes\unit\Enemy.cpp" />
     <ClCompile Include="..\Classes\unit\Obj.cpp" />
     <ClCompile Include="..\Classes\unit\player.cpp" />
-    <ClCompile Include="CheckHitObj.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\Classes\input\OPRT_KEY.cpp" />
     <ClCompile Include="..\Classes\input\OPRT_TOUCH.cpp" />
@@ -173,15 +181,24 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources\" /D /E /I /F /Y
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\debug\_DebugConOut.h" />
     <ClInclude Include="..\Classes\debug\_DebugGraph.h" />
+    <ClInclude Include="..\Classes\EffectMng.h" />
+    <ClInclude Include="..\Classes\Effekseer\Effekseer.h" />
+    <ClInclude Include="..\Classes\Effekseer\EffekseerNative.h" />
+    <ClInclude Include="..\Classes\Effekseer\EffekseerRendererNative.h" />
     <ClInclude Include="..\Classes\GameScene.h" />
-    <ClInclude Include="..\Classes\move\MoveCtl.h" />
-    <ClInclude Include="..\Classes\move\MovIdle.h" />
-    <ClInclude Include="..\Classes\move\MovJump.h" />
-    <ClInclude Include="..\Classes\move\MovLR.h" />
+    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\MojuleHeader.h" />
+    <ClInclude Include="..\Classes\mojule\check\CheckHitObj.h" />
+    <ClInclude Include="..\Classes\mojule\check\CheckKeyData.h" />
+    <ClInclude Include="..\Classes\mojule\check\CheckList.h" />
+    <ClInclude Include="..\Classes\mojule\move\MovFall.h" />
+    <ClInclude Include="..\Classes\mojule\move\MovIdle.h" />
+    <ClInclude Include="..\Classes\mojule\move\MovJump.h" />
+    <ClInclude Include="..\Classes\mojule\move\MovLR.h" />
+    <ClInclude Include="..\Classes\MoveCtl.h" />
     <ClInclude Include="..\Classes\unit\Enemy.h" />
     <ClInclude Include="..\Classes\unit\Obj.h" />
     <ClInclude Include="..\Classes\unit\player.h" />
-    <ClInclude Include="CheckHitObj.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="..\Classes\input\OPRT.h" />
     <ClInclude Include="..\Classes\input\OPRT_KEY.h" />
