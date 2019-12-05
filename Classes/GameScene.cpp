@@ -32,18 +32,16 @@ Scene* GameScene::createScene()
     return GameScene::create();
 }
 
-// Print useful error message instead of segfaulting when files are not there.
+
 static void problemLoading(const char* filename)
 {
     printf("Error while loading: %s\n", filename);
     printf("Depending on how you compiled you might have to add 'Resources/' in front of filenames in HelloWorldScene.cpp\n");
 }
 
-// on "init" you need to initialize your instance
+
 bool GameScene::init()
 {
-    //////////////////////////////
-    // 1. super init first
     if ( !Scene::init() )
     {
         return false;
@@ -52,11 +50,6 @@ bool GameScene::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    /////////////////////////////
-    // 2. add a menu item with "X" image, which is clicked to quit the program
-    //    you may modify it.
-
-    // add a "close" icon to exit the progress. it's an autorelease object
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
@@ -100,39 +93,6 @@ bool GameScene::init()
         this->addChild(label, 1);
     }
 
-
- //  //add "HelloWorld" splash screen"
- //   auto sprite = Sprite::create("image/Sprites/player/player-idle/player-idle-1.png");
- //   if (sprite == nullptr)
- //   {
- //       problemLoading("'HelloWorld.png'");
- //   }
- //   else
- //   {
- //      // position the sprite on the center of the screen
- //       sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
- // 		//sprite->setName("player");
- // 		//sprite->runAction(Sequence::create(aori,aori2,aori2,aori,aori,aori2,aori2,aori,nullptr));
- // 
- // 		//sprite->runAction(Spawn::create(moveBy2, moveBy4, moveBy6, nullptr));
- // 
- //       // add the sprite as a child to this layer
- //       this->addChild(sprite, 0);
- //   }
-	//auto spriteFrameCache = SpriteFrameCache::getInstance();
-	//spriteFrameCache->addSpriteFramesWithFile("image/Sprites/player/player-idle/player-idle.plist");
-	//auto animation = Animation::create();
-	//for (int i = 1; i <= 4; i++)
-	//{
-	//	auto string = __String::createWithFormat("player-idle-%i.png", i);
-	//	SpriteFrame* mysprite = spriteFrameCache->getSpriteFrameByName(string->getCString());
-	//	animation->addSpriteFrame(mysprite);
-	//}
-	//animation->setDelayPerUnit(0.2f);
-	//animation->setRestoreOriginalFrame(true);
-	//auto action = Animate::create(animation);
-	//auto anime = Spawn::create(RepeatForever::create(action), FlipX::create(true));
-	//sprite->runAction(anime);
 	//背景用レイヤー生成
 
 	auto layer = Layer::create();

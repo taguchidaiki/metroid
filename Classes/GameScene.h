@@ -29,7 +29,7 @@
 #include "input/OPRT_KEY.h"
 #include "input/OPRT_TOUCH.h"
 #include "AnimCtl.h"
-#include "EffectMng.h"
+#include "EffectCtl.h"
 #include "unit/player.h"
 #include "debug/_DebugGraph.h"
 

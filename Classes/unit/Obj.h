@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "AnimCtl.h"
 #include "MoveCtl.h"
+#include "EffectCtl.h"
 #include <memory>
 #ifdef _DEBUG
 #include "debug/_DebugConOut.h"

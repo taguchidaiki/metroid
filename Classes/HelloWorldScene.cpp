@@ -31,15 +31,20 @@ bool HelloWorld::init()
 
 #if CK_PLATFORM_ANDROID
 	CkConfig config(env, activity);
+	CkPathType pathType = kCkPathType_Default;
 #else
 	CkConfig config;
+	CkPathType pathType = kCkPathType_FileSystem;
 #endif
 
 	CkInit(&config);
 
-	sound = CkSound::newStreamSound("sound/bgm/semi.mp3");
+	sound = CkSound::newStreamSound("sound/bgm/maoucyber.cks", pathType);
 	sound->play();
 
+	bank = CkBank::newBank("sound/se/maougan.ckb", pathType);
+	se = CkSound::newBankSound(bank,"maougan");
+	se->play();
 	return true;
 }
 
@@ -63,7 +68,6 @@ void HelloWorld::update(float delta)
 			
 		}
 	}
-
 	
 	//毎フレーム、マネージャーを更新します。
 	lpEffectCtl.Update();
@@ -76,6 +80,9 @@ void HelloWorld::update(float delta)
 HelloWorld::~HelloWorld()
 {
 	sound->destroy();
+	se->destroy();
+	bank->destroy();
+	CkShutdown();
 }
 
 void HelloWorld::visit(cocos2d::Renderer *renderer, const cocos2d::Mat4& parentTransform, uint32_t parentFlags)
