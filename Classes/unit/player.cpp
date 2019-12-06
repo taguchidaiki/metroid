@@ -37,18 +37,29 @@ bool player::init(void)
 
 	setPosition(cocos2d::Vec2(200, 100));
 
-	_speed = 3.0f;
+	_speed = 5.0f;
+	_gravity = cocos2d::Vec2(0,-1);
+
+	//アニメーションの登録処理
+	lpAnimCtl.addAnimation("player", "player-idle", 0.2f);
+	lpAnimCtl.addAnimation("player", "player-run", 0.1f);
+	lpAnimCtl.addAnimation("player", "player-run-shot", 0.1f);
+	lpAnimCtl.addAnimation("player", "player-jump", 0.2f);
+
 	//右移動
 	{
 		ActMojule act;
 		act.stateName = "player-run-r";
 		act.stateID = STATE::MOVE_R;
+		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_R, false, true);
 		act.vec = cocos2d::Vec2(1, 0);
 		act.flip = false;
+		act.repeat = false;
+		act.action = lpAnimCtl.getAction(this,"player-run",true,act.flip);
 		lpMoveCtl.AddActMojule(act.stateName,act);
 	}
 	//左移動
@@ -56,12 +67,15 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-run-l";
 		act.stateID = STATE::MOVE_L;
+		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_L, false, true);
 		act.runAction = MovLR();
 		act.vec = cocos2d::Vec2(-1, 0);
 		act.flip = true;
+		act.repeat = false;
+		act.action = lpAnimCtl.getAction(this, "player-run", true, act.flip);
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//右ダッシュ中
@@ -69,12 +83,15 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-running-r";
 		act.stateID = STATE::MOVE_R;
+		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_R, true, true);
 		act.vec = cocos2d::Vec2(1, 0);
 		act.flip = false;
+		act.repeat = false;
+		act.action = nullptr;
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//左ダッシュ中
@@ -82,12 +99,15 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-running-l";
 		act.stateID = STATE::MOVE_L;
+		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::MOVE_L, true, true);
 		act.vec = cocos2d::Vec2(-1, 0);
 		act.flip = true;
+		act.repeat = false;
+		act.action = nullptr;
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//待機中
@@ -97,11 +117,14 @@ bool player::init(void)
 		act.stateID = STATE::IDLE;
 		act.whiteList.emplace_back(STATE::MOVE_L);
 		act.whiteList.emplace_back(STATE::MOVE_R);
+		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovIdle();
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::NON_KEY, true, true);
 		act.vec = cocos2d::Vec2(0, 0);
+		act.repeat = false;
+		act.action = lpAnimCtl.getAction(this, act.stateName, true, false);
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 		_stateName = act.stateName;
 	}
@@ -111,8 +134,10 @@ bool player::init(void)
 		act.stateName = "player-jump";
 		act.stateID = STATE::JUMP;
 		act.runAction = MovJump();
-		act.keyData = act.keyData = std::tuple<PTN, bool, bool>(PTN::JUMP, false, true);
-		act.vec = cocos2d::Vec2(0, 1);
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::JUMP, false, true);
+		act.vec = cocos2d::Vec2(0, 3);
+		act.repeat = false;
+		act.action = lpAnimCtl.getAction(this, act.stateName, act.repeat, false);
 		lpMoveCtl.AddActMojule(act.stateName, act);
 	}
 	//ジャンプ中
@@ -125,7 +150,9 @@ bool player::init(void)
 		act.whiteList.emplace_back(STATE::MOVE_L);
 		act.runAction = MovJump();
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::NON_KEY, true, true);
-		act.vec = cocos2d::Vec2(0, 1);
+		act.vec = cocos2d::Vec2(0, 3);
+		act.repeat = false;
+		act.action = nullptr;
 		lpMoveCtl.AddActMojule(act.stateName, act);
 
 	}
@@ -140,12 +167,10 @@ bool player::init(void)
 	//	act.stateID = STATE::FALLING;
 	//}
 
-	//アニメーションの登録処理
-	lpAnimCtl.addAnimation("player", "player-idle", 0.2f);
-	lpAnimCtl.addAnimation("player", "player-run", 0.1f);
-	lpAnimCtl.addAnimation("player", "player-run-shot", 0.1f);
-	lpAnimCtl.addAnimation("player", "player-jump", 0.2f);
+	runAction(lpMoveCtl.GetActData(_stateName).action);
 
+	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
+	
 	//_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
@@ -163,7 +188,7 @@ void player::update(float delta)
 {
 	lpMoveCtl.SetActState((*this),_oprtState);
 
-	lpMoveCtl.ActUpdate((*this));
+	//lpMoveCtl.ActUpdate((*this));
 
 	_oprtState->Update();
 

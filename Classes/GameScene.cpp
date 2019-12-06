@@ -125,6 +125,21 @@ bool GameScene::init()
 		this->addChild(line, 2);
 	}*/
 
+	this->scheduleUpdate();
+
+	//エフェクトの登録処理
+	lpEffectCtl.AddEffect("Laser01", 13.0f);
+	lpEffectCtl.AddEffect("Homing_Laser01");
+
+	//サウンドの初期化
+	lpSoundCtl.AddSoundData("maoucyber", SND_PTN::BGM);
+	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
+
+	//BGM再生処理
+	lpSoundCtl.PlaySoundData("maoucyber", SND_PTN::BGM);
+
+	
+
     return true;
 }
 
@@ -145,6 +160,9 @@ void GameScene::menuCloseCallback(Ref* pSender)
 void GameScene::update(float delta)
 {
 	lpEffectCtl.Update();
+	lpSoundCtl.Update();
+
+	count++;
 }
 
 void GameScene::visit(cocos2d::Renderer * renderer, const cocos2d::Mat4 & parentTransform, uint32_t parentFlags)

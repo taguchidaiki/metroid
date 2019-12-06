@@ -47,7 +47,10 @@ struct ActMojule
 	std::tuple<PTN, bool, bool> keyData;				//対応しているキー情報
 	cocos2d::Vec2 vec;									//移動する方向
 	std::map<DIR,RectData> hitRect;						//当たり判定の矩形情報
+
+	cocos2d::Action* action;							//アニメーションデータ
 	bool flip;											//反転用フラグ
+	bool repeat;										//リピート用フラグ
 
 	ActMojule& operator=(const ActMojule& act)
 	{
@@ -60,7 +63,9 @@ struct ActMojule
 		keyData = act.keyData;
 		vec = act.vec;
 		hitRect = act.hitRect;
+		action = act.action;
 		flip = act.flip;
+		repeat = act.repeat;
 		return (*this);
 	}
 };
@@ -87,7 +92,7 @@ private:
 	MoveCtl() {};
 	MoveCtl(MoveCtl&) {};
 	MoveCtl& operator=(MoveCtl&) {};
-	~MoveCtl() {};
+	~MoveCtl();
 
 	std::map<std::string, ActMojule> _actList;
 };

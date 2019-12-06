@@ -75,6 +75,7 @@ SoundCtl::SoundCtl()
 	CkConfig config;
 	CkInit(&config);
 	_pathType = kCkPathType_FileSystem;
+	
 #endif
 }
 
