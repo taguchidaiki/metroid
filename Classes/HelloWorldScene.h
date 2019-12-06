@@ -3,20 +3,13 @@
 
 #include "cocos2d.h"
 #include "EffectCtl.h"
-#include "ck/ck.h"
-#include "ck/config.h"
-#include "ck/sound.h"
-#include "ck/bank.h"
+#include "SoundCtl.h"
 
 class HelloWorld : public cocos2d::Scene
 {
 private:
 
 	int count = 0;
-
-	CkBank* bank;
-	CkSound* sound;
-	CkSound* se;
 
 public:
     static cocos2d::Scene* createScene();

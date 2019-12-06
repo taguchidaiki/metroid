@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <vector>
 #include <map>
 #include "debug/_DebugConOut.h"
 #include "ck/ck.h"
@@ -27,10 +28,11 @@ public:
 	}
 
 	//サウンド情報の登録処理
-	bool AddSoundData(std::string soundName, SND_PTN ptn);
+	bool AddSoundData(std::string soundName, SND_PTN ptn, 
+					  float volume = 1.0f, float speed = 1.0f, int pos = 0, float pan = 0.0f, int count = -1);
 
 	//引数で渡されたサウンドを鳴らす
-	void PlaySound(std::string soundName, SND_PTN ptn);
+	void PlaySoundData(std::string soundName, SND_PTN ptn);
 	
 	//引数で渡されたサウンドを止める
 	bool StopSound();
@@ -49,5 +51,6 @@ private:
 	CkConfig config;
 	CkPathType _pathType;
 	std::array<std::map<std::string, CkSound*>, static_cast<int>(SND_PTN::MAX)> _soundData;
+	std::vector<CkBank*> _bankData;
 };
 
