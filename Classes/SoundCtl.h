@@ -1,15 +1,29 @@
-#pragma once
+ï»¿#pragma once
 #include <array>
 #include <vector>
 #include <map>
+#include <string>
 #include "debug/_DebugConOut.h"
-#include "ck/ck.h"
-#include "ck/config.h"
-#include "ck/sound.h"
-#include "ck/bank.h"
+#include <ck/ck.h>
+#include <ck/config.h>
+#include <ck/sound.h>
+#include <ck/bank.h>
+#include <jni.h>
 
 #define lpSoundCtl SoundCtl::GetInstance()
 
+#ifndef __ANDROID_JNI__
+#define __ANDROID_JNI__
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+	JNIEXPORT void JNICALL Java_org_cocos2dx_cpp_AppActivity_initCricket(JNIEnv *env,jclass activity, jobject context);
+
+#ifdef __cplusplus
+}
+#endif
+#endif
 enum class SND_PTN
 {
 	BGM,
@@ -27,17 +41,17 @@ public:
 		return getInstance;
 	}
 
-	//ƒTƒEƒ“ƒhî•ñ‚Ì“o˜^ˆ—
+	//ã‚µã‚¦ãƒ³ãƒ‰æƒ…å ±ã®ç™»éŒ²å‡¦ç†
 	bool AddSoundData(std::string soundName, SND_PTN ptn, 
 					  float volume = 1.0f, float speed = 1.0f, int pos = 0, float pan = 0.0f, int count = -1);
 
-	//ˆø”‚Å“n‚³‚ê‚½ƒTƒEƒ“ƒh‚ğ–Â‚ç‚·
+	//å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ã‚’é³´ã‚‰ã™
 	void PlaySoundData(std::string soundName, SND_PTN ptn);
 	
-	//ˆø”‚Å“n‚³‚ê‚½ƒTƒEƒ“ƒh‚ğ~‚ß‚é
+	//å¼•æ•°ã§æ¸¡ã•ã‚ŒãŸã‚µã‚¦ãƒ³ãƒ‰ã‚’æ­¢ã‚ã‚‹
 	bool StopSound();
 
-	//‚·‚×‚Ä‚ÌƒTƒEƒ“ƒh‚ğ~‚ß‚é
+	//ã™ã¹ã¦ã®ã‚µã‚¦ãƒ³ãƒ‰ã‚’æ­¢ã‚ã‚‹
 	void StopAllSound();
 
 	void Update(void);
@@ -48,7 +62,6 @@ private:
 	SoundCtl& operator=(const SoundCtl&) {};
 	~SoundCtl();
 
-	CkConfig config;
 	CkPathType _pathType;
 	std::array<std::map<std::string, CkSound*>, static_cast<int>(SND_PTN::MAX)> _soundData;
 	std::vector<CkBank*> _bankData;

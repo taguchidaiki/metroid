@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cocos2d.h"
 #include "Effekseer/Effekseer.h"
 #include <map>
@@ -16,20 +16,20 @@ public:
 		return getInstance;
 	}
 
-	//ƒGƒtƒFƒNƒg“o˜^
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç™»éŒ²
 	void AddEffect(std::string effectName, float size = 1.0f);
 
-	//ƒ}ƒl[ƒWƒƒ[‚ÌƒAƒbƒvƒf[ƒg
+	//ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 	void Update(void);
 
-	//“o˜^‚µ‚½ƒGƒtƒFƒNƒg‚ÉƒGƒ~ƒbƒ^[‚ğ‚Â‚¯‚ÄƒAƒ^ƒbƒ`
+	//ç™»éŒ²ã—ãŸã‚¨ãƒ•ã‚§ã‚¯ãƒˆã«ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã‚’ã¤ã‘ã¦ã‚¢ã‚¿ãƒƒãƒ
 	bool AddEmitter(std::string effectName, cocos2d::Node& node,
-					   float scale = 1.0f, cocos2d::Vec3& rot = cocos2d::Vec3(0, 90, 0), cocos2d::Vec2& = cocos2d::Vec2(0, 0), cocos2d::Vec3& target = cocos2d::Vec3(0,0,0));
+					   float scale = 1.0f, const cocos2d::Vec3& rot = cocos2d::Vec3(0, 90, 0), const cocos2d::Vec2& = cocos2d::Vec2(0, 0), const cocos2d::Vec3& target = cocos2d::Vec3(0,0,0));
 
-	//getŠÖ”
+	//geté–¢æ•°
 	efk::EffectManager& manager(void) const  { return (*_manager); };
 
-	//setŠÖ”
+	//seté–¢æ•°
 
 private:
 	EffectCtl();
@@ -37,10 +37,10 @@ private:
 	EffectCtl& operator=(const EffectCtl&) {};
 	~EffectCtl();
 
-	//ƒGƒtƒFƒNƒgî•ñ‚ª“ü‚éƒŠƒXƒg
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆæƒ…å ±ãŒå…¥ã‚‹ãƒªã‚¹ãƒˆ
 	std::map < std::string, efk::Effect*> _effectList;
 
-	//ƒGƒtƒFƒNƒg‚ğŠÇ—‚·‚éƒ}ƒl[ƒWƒƒ[
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’ç®¡ç†ã™ã‚‹ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	efk::EffectManager* _manager;
 
 };

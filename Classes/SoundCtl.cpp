@@ -1,6 +1,22 @@
-#include "SoundCtl.h"
+ï»¿#include "SoundCtl.h"
 
-//ƒTƒEƒ“ƒh–¼AƒTƒEƒ“ƒh‚Ìí—ŞAƒ{ƒŠƒ…[ƒ€AÄ¶‘¬“xAÄ¶ˆÊ’uAƒpƒ“‚ÌˆÊ’u(-1.0f ~ 1.0f)Aƒ‹[ƒv‰ñ”
+#if CK_PLATFORM_ANDROID
+#ifdef __cplusplus
+extern "C" {
+#endif
+	JNIEXPORT void JNICALL Java_org_cocos2dx_cpp_AppActivity_initCricket(JNIEnv * env, jclass activity, jobject context)
+	{
+		CkConfig config(env, context);
+		CkInit(&config);
+
+	}
+#ifdef __cplusplus
+}
+#endif
+#endif
+
+
+//ã‚µã‚¦ãƒ³ãƒ‰åã€ã‚µã‚¦ãƒ³ãƒ‰ã®ç¨®é¡ã€ãƒœãƒªãƒ¥ãƒ¼ãƒ ã€å†ç”Ÿé€Ÿåº¦ã€å†ç”Ÿä½ç½®ã€ãƒ‘ãƒ³ã®ä½ç½®(-1.0f ~ 1.0f)ã€ãƒ«ãƒ¼ãƒ—å›æ•°
 bool SoundCtl::AddSoundData(std::string soundName, SND_PTN ptn ,float volume, float speed, int pos, float pan, int count)
 {
 	int soundPtn = static_cast<int>(ptn);
@@ -26,10 +42,10 @@ bool SoundCtl::AddSoundData(std::string soundName, SND_PTN ptn ,float volume, fl
 
 	if (_soundData[soundPtn][soundName] == nullptr)
 	{
-		TRACE("ƒTƒEƒ“ƒhƒf[ƒ^‚ª³‚µ‚­“Ç‚İ‚ß‚Ü‚¹‚ñ‚Å‚µ‚½");
+		TRACE("ã‚µã‚¦ãƒ³ãƒ‰ãƒ‡ãƒ¼ã‚¿ãŒæ­£ã—ãèª­ã¿è¾¼ã‚ã¾ã›ã‚“ã§ã—ãŸ");
 		return false;
 	}
-	//ƒ{ƒŠƒ…[ƒ€AÄ¶‘¬“xAÄ¶ˆÊ’uAƒpƒ“‚ÌˆÊ’uAƒ‹[ƒv‰ñ”A
+	//ãƒœãƒªãƒ¥ãƒ¼ãƒ ã€å†ç”Ÿé€Ÿåº¦ã€å†ç”Ÿä½ç½®ã€ãƒ‘ãƒ³ã®ä½ç½®ã€ãƒ«ãƒ¼ãƒ—å›æ•°ã€
 	
 	_soundData[soundPtn][soundName]->setVolume(volume);
 	_soundData[soundPtn][soundName]->setSpeed(speed);
@@ -40,7 +56,7 @@ bool SoundCtl::AddSoundData(std::string soundName, SND_PTN ptn ,float volume, fl
 	return true;
 }
 
-//ƒTƒEƒ“ƒh–¼AƒTƒEƒ“ƒh‚Ìí—Ş
+//ã‚µã‚¦ãƒ³ãƒ‰åã€ã‚µã‚¦ãƒ³ãƒ‰ã®ç¨®é¡
 void SoundCtl::PlaySoundData(std::string soundName, SND_PTN ptn)
 {
 	_soundData[static_cast<int>(ptn)][soundName]->play();
@@ -54,14 +70,12 @@ void SoundCtl::Update(void)
 SoundCtl::SoundCtl()
 {
 #if CK_PLATFORM_ANDROID
-	CkConfig config(env, activity);
-	CkPathType pathType = kCkPathType_Default;
+	_pathType = kCkPathType_Default;
 #else
 	CkConfig config;
-	CkPathType pathType = kCkPathType_FileSystem;
-#endif
-
 	CkInit(&config);
+	_pathType = kCkPathType_FileSystem;
+#endif
 }
 
 

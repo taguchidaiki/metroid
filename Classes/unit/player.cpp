@@ -146,7 +146,7 @@ bool player::init(void)
 	lpAnimCtl.addAnimation("player", "player-run-shot", 0.1f);
 	lpAnimCtl.addAnimation("player", "player-jump", 0.2f);
 
-	_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
+	//_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	_oprtState = std::make_shared<OPRT_KEY>((*this));

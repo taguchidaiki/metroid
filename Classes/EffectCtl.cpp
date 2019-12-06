@@ -1,10 +1,10 @@
-#include "EffectCtl.h"
+ï»¿#include "EffectCtl.h"
 
-//ƒtƒ@ƒCƒ‹‚ÌƒGƒtƒFƒNƒg–¼,ƒGƒtƒFƒNƒg‚ÌƒTƒCƒY
+//ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚¨ãƒ•ã‚§ã‚¯ãƒˆå,ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã®ã‚µã‚¤ã‚º
 void EffectCtl::AddEffect(std::string effectName, float size)
 {
 
-	//ƒGƒtƒFƒNƒgƒl[ƒ€‚©‚çƒŠƒXƒg‚ðŒŸõ‚©‚¯‚Ä‚È‚©‚Á‚½‚ç“o˜^‚·‚é
+	//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆãƒãƒ¼ãƒ ã‹ã‚‰ãƒªã‚¹ãƒˆã‚’æ¤œç´¢ã‹ã‘ã¦ãªã‹ã£ãŸã‚‰ç™»éŒ²ã™ã‚‹
 	if (_effectList.find(effectName) == _effectList.end())
 	{
 		std::string effectdir = "effect/" + effectName + ".efk";
@@ -19,15 +19,15 @@ void EffectCtl::Update(void)
 	_manager->update();
 }
 
-//ƒGƒtƒFƒNƒg–¼AƒGƒtƒFƒNƒgŠÇ—A•R‚Ã‚¯‚éƒm[ƒhAƒXƒP[ƒ‹’lA3D‰ñ“]’lAˆÊ’uî•ñAŽû‘©ˆÊ’u
-bool EffectCtl::AddEmitter(std::string effectName,cocos2d::Node& node, float scale, cocos2d::Vec3& rot, cocos2d::Vec2& pos, cocos2d::Vec3& target)
+//ã‚¨ãƒ•ã‚§ã‚¯ãƒˆåã€ã‚¨ãƒ•ã‚§ã‚¯ãƒˆç®¡ç†ã€ç´ã¥ã‘ã‚‹ãƒŽãƒ¼ãƒ‰ã€ã‚¹ã‚±ãƒ¼ãƒ«å€¤ã€3Då›žè»¢å€¤ã€ä½ç½®æƒ…å ±ã€åŽæŸä½ç½®
+bool EffectCtl::AddEmitter(std::string effectName,cocos2d::Node& node, float scale, const cocos2d::Vec3& rot, const cocos2d::Vec2& pos, const cocos2d::Vec3& target)
 {
 	if (_effectList.find(effectName) == _effectList.end())
 	{
 		return false;
 	}
 
-	//ƒGƒ~ƒbƒ^[‚Ö‚Ì“o˜^ˆ—
+	//ã‚¨ãƒŸãƒƒã‚¿ãƒ¼ã¸ã®ç™»éŒ²å‡¦ç†
 	{
 		auto emitter = efk::EffectEmitter::create(_manager);
 		emitter->setEffect(_effectList[effectName]);
