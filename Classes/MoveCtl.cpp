@@ -7,8 +7,11 @@ void MoveCtl::AddActMojule(std::string actName, ActMojule & act)
 	if (_actList.find(actName) == _actList.end())
 	{
 		_actList.emplace(actName, act);
+		if (_actList.at(actName).action != nullptr)
+		{
+			_actList.at(actName).action->retain();
+		}
 	}
-	//_actList.try_emplace(actName, act);
 }
 
 bool MoveCtl::SetActState(cocos2d::Sprite& sp, ActMojule& actData, std::weak_ptr<OPRT> oprt)
@@ -20,12 +23,12 @@ bool MoveCtl::SetActState(cocos2d::Sprite& sp, ActMojule& actData, std::weak_ptr
 		{
 			if (act.second.keyData == keyData)
 			{
-				actData = act.second;
+				//actData = act.second;
 			}
 		}
 	}
 
-	actData = _actList["player-idle"];
+	//actData = _actList["player-idle"];
 
 	return true;
 }
@@ -55,6 +58,8 @@ void MoveCtl::ActUpdate(cocos2d::Sprite & sp, ActMojule& actData)
 
 bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 {
+	_actList.at(((Obj&)sp).stateName()).runAction(sp, _actList.at(((Obj&)sp).stateName()));
+
 	//キーの入力情報から追加するモジュールを全走査
 	for (auto keyData : oprt.lock()->key())
 	{
@@ -65,6 +70,11 @@ bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 				if (CheckList()(sp,act.second))
 				{
 					act.second.runAction(sp, act.second);
+					if (act.second.action != nullptr && !act.second.repeat)
+					{
+						sp.stopAllActions();
+						sp.runAction(act.second.action);
+					}
 				}
 			}
 		}
@@ -81,4 +91,15 @@ void MoveCtl::ActUpdate(cocos2d::Sprite& sp)
 ActMojule MoveCtl::GetActData(const std::string& actName)
 {
 	return _actList.at(actName);
+}
+
+MoveCtl::~MoveCtl()
+{
+	for (auto data : _actList)
+	{
+		if (data.second.action != nullptr)
+		{
+			data.second.action->release();
+		}
+	}
 }

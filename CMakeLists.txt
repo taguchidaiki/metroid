@@ -29,6 +29,15 @@ set(APP_NAME cocos2dx)
 
 project(${APP_NAME})
 
+include(AndroidNdkModules)
+android_ndk_import_module_cpufeatures()
+
+include_directories(D:/~/Mycocos/cocos2dx/cricket/1.6.7/inc)
+
+link_directories(D:/~/Mycocos/cocos2dx/cricket/1.6.7/lib/android/ndk/${ANDROID_ABI}/debug)
+
+link_libraries(D:/~/Mycocos/cocos2dx/cricket/1.6.7/lib/android/ndk/${ANDROID_ABI}/debug/libck.a)
+
 set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d)
 set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
 
@@ -50,15 +59,73 @@ endif()
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
      Classes/HelloWorldScene.cpp
+     Classes/AnimCtl.cpp
+     Classes/EffectCtl.cpp
+     Classes/GameScene.cpp
+     Classes/MoveCtl.cpp
+     Classes/SoundCtl.cpp
      Classes/input/OPRT_KEY.cpp
      Classes/input/OPRT_TOUCH.cpp
+     Classes/debug/_DebugConOut.cpp
+     Classes/debug/_DebugGraph.cpp
+     Classes/Effekseer/Effekseer.cpp
+     Classes/Effekseer/EffekseerNative.cpp
+     Classes/Effekseer/EffekseerRendererNative.cpp
+     Classes/mojule/check/CheckHitObj.cpp
+     Classes/mojule/check/CheckKeyData.cpp
+     Classes/mojule/check/CheckList.cpp
+     Classes/mojule/move/MovIdle.cpp
+     Classes/mojule/move/MovLR.cpp
+     Classes/mojule/move/MovJump.cpp
+     Classes/mojule/move/MovFall.cpp
+     Classes/unit/Obj.cpp
+     Classes/unit/player.cpp
+     Classes/unit/Enemy.cpp
+     cricket/1.6.7//lib/win/vs15.0/x86/DebugDynamic/ck.lib
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/HelloWorldScene.h
+     Classes/AnimCtl.h
+     Classes/EffectCtl.h
+     Classes/GameScene.h
+     Classes/MojuleHeader.h
+     Classes/MoveCtl.h
+     Classes/SoundCtl.h
      Classes/input/OPRT.h
      Classes/input/OPRT_KEY.h
      Classes/input/OPRT_TOUCH.h
+     Classes/debug/_DebugConOut.h
+     Classes/debug/_DebugGraph.h
+     Classes/Effekseer/Effekseer.h
+     Classes/Effekseer/EffekseerNative.h
+     Classes/Effekseer/EffekseerRendererNative.h
+     Classes/mojule/check/CheckHitObj.h
+     Classes/mojule/check/CheckKeyData.h
+     Classes/mojule/check/CheckList.h
+     Classes/mojule/move/MovIdle.h
+     Classes/mojule/move/MovLR.h
+     Classes/mojule/move/MovJump.h
+     Classes/mojule/move/MovFall.h
+     Classes/unit/Obj.h
+     Classes/unit/player.h
+     Classes/unit/Enemy.h
+     cricket/1.6.7/inc/ck/ck.h
+     cricket/1.6.7/inc/ck/attenuationmode.h
+     cricket/1.6.7/inc/ck/bank.h
+     cricket/1.6.7/inc/ck/config.h
+     cricket/1.6.7/inc/ck/customfile.h
+     cricket/1.6.7/inc/ck/customstream.h
+     cricket/1.6.7/inc/ck/effect.h
+     cricket/1.6.7/inc/ck/effectbus.h
+     cricket/1.6.7/inc/ck/effectparam.h
+     cricket/1.6.7/inc/ck/effectprocessor.h
+     cricket/1.6.7/inc/ck/effecttype.h
+     cricket/1.6.7/inc/ck/mixer.h
+     cricket/1.6.7/inc/ck/pathtype.h
+     cricket/1.6.7/inc/ck/platform.h
+     cricket/1.6.7/inc/ck/sound.h
+
      )
 
 if(ANDROID)

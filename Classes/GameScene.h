@@ -30,6 +30,7 @@
 #include "input/OPRT_TOUCH.h"
 #include "AnimCtl.h"
 #include "EffectCtl.h"
+#include "SoundCtl.h"
 #include "unit/player.h"
 #include "debug/_DebugGraph.h"
 
@@ -52,7 +53,7 @@ public:
 	virtual void visit(cocos2d::Renderer *renderer, const cocos2d::Mat4& parentTransform, uint32_t parentFlags) override;
 
 private:
-	
+	int count;
 };
 
 #endif // __HELLOWORLD_SCENE_H__
