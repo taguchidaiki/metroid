@@ -7,6 +7,7 @@ OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
 		std::get<0>(_key[i]) = static_cast<PTN>(i);
 		std::get<2>(_key[i]) = false;
 	}
+	std::get<2>(_key[static_cast<int>(PTN::NON_KEY)]) = true;
 	Init(sp);
 }
 
@@ -23,6 +24,8 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 			}
 
 		}
+		std::get<2>(_key[static_cast<int>(PTN::NON_KEY)]) = false;
+
 		return true;
 	};
 
@@ -35,6 +38,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 				std::get<2>(_key[i]) = false;
 			}
 		}
+		std::get<2>(_key[static_cast<int>(PTN::NON_KEY)]) = true;
 		return true;
 	};
 
@@ -49,14 +53,4 @@ void OPRT_KEY::Update()
 		std::get<1>(_key[i]) = std::get<2>(_key[i]);
 	}
 
-	//_dir‚Ì•ª‰ñ‚µ‚Ä‚»‚ÌˆÚ“®”»’è‚ªtrue‚Ì•ûŒü‚É‚¾‚¯“®‚©‚·
-	//for (auto dir : _dir)
-	//{
-	//	if (dir.second == true)
-	//	{
-	//		//sp->setPosition(sp->getPosition() + dir.first * sp->speed());
-	//		auto action = cocos2d::MoveBy::create(1 / 60.0f, dir.first * sp.speed());
-	//		sp.runAction(action);
-	//	}
-	//}
 }

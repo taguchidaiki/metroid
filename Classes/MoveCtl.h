@@ -16,7 +16,8 @@ enum class DIR
 
 enum class STATE
 {
-	IDLE,
+	IDLE_R,
+	IDLE_L,
 	JUMP,
 	JUMPING,
 	MOVE_R,
@@ -80,11 +81,10 @@ public:
 	}
 
 	void AddActMojule(std::string actName, ActMojule& act);
-	bool SetActState(cocos2d::Sprite& sp, ActMojule& actData, std::weak_ptr<OPRT> oprt);
-	void ActUpdate(cocos2d::Sprite& sp ,ActMojule& actData);
+	//void ActUpdate(cocos2d::Sprite& sp ,ActMojule& actData);
 
 	bool SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt);
-	void ActUpdate(cocos2d::Sprite& sp);
+
 
 	ActMojule GetActData(const std::string& actName);
 

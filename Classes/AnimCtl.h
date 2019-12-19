@@ -1,5 +1,6 @@
 #pragma once
 #include "cocos2d.h"
+#include "MoveCtl.h"
 #include <map>
 #include <memory>
 
@@ -19,6 +20,9 @@ public:
 	
 	//アクションを受け渡す処理
 	cocos2d::Action* getAction(cocos2d::Node* sp,std::string key, bool repeat, bool flip);
+
+	//アクション起動処理
+	void runAction(cocos2d::Sprite& sp, ActMojule& act);
 	
 private:
 	AnimCtl();
