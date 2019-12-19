@@ -14,47 +14,28 @@ void MoveCtl::AddActMojule(std::string actName, ActMojule & act)
 	}
 }
 
-bool MoveCtl::SetActState(cocos2d::Sprite& sp, ActMojule& actData, std::weak_ptr<OPRT> oprt)
-{
-
-	for (auto keyData : oprt.lock()->key())
-	{
-		for (auto act : _actList)
-		{
-			if (act.second.keyData == keyData)
-			{
-				//actData = act.second;
-			}
-		}
-	}
-
-	//actData = _actList["player-idle"];
-
-	return true;
-}
-
-void MoveCtl::ActUpdate(cocos2d::Sprite & sp, ActMojule& actData)
-{
-	auto checkList = [&](){
-		for (auto list: actData.actionList)
-		{
-			if (!list)
-			{
-				return false;
-			}
-		}
-		return true;
-	};
-	
-	for (auto act : actData.actionList)
-	{
-		if (checkList())
-		{
-			actData.runAction(sp, actData);
-		}
-	}
-
-}
+//void MoveCtl::ActUpdate(cocos2d::Sprite & sp, ActMojule& actData)
+//{
+//	auto checkList = [&](){
+//		for (auto list: actData.actionList)
+//		{
+//			if (!list)
+//			{
+//				return false;
+//			}
+//		}
+//		return true;
+//	};
+//	
+//	for (auto act : actData.actionList)
+//	{
+//		if (checkList())
+//		{
+//			actData.runAction(sp, actData);
+//		}
+//	}
+//
+//}
 
 bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 {
@@ -72,8 +53,9 @@ bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 					act.second.runAction(sp, act.second);
 					if (act.second.action != nullptr && !act.second.repeat)
 					{
-						sp.stopAllActions();
-						sp.runAction(act.second.action);
+						//sp.stopAllActions();
+						lpAnimCtl.runAction(sp, act.second);
+						//sp.runAction(act.second.action);
 					}
 				}
 			}
@@ -81,11 +63,6 @@ bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 	}
 
 	return true;
-}
-
-void MoveCtl::ActUpdate(cocos2d::Sprite& sp)
-{
-	
 }
 
 ActMojule MoveCtl::GetActData(const std::string& actName)

@@ -45,6 +45,14 @@ cocos2d::Action * AnimCtl::getAction(cocos2d::Node* sp,std::string key, bool rep
 	return action;
 }
 
+void AnimCtl::runAction(cocos2d::Sprite & sp, ActMojule& act)
+{
+	sp.stopAllActions();
+	sp.runAction(act.action);
+	sp.runAction(cocos2d::FlipX::create(act.flip));
+
+}
+
 AnimCtl::AnimCtl()
 {
 }

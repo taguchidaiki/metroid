@@ -47,7 +47,7 @@ bool player::init(void)
 	lpAnimCtl.addAnimation("player", "player-jump", 0.2f);
 
 	//右移動
-	{
+	/*{
 		ActMojule act;
 		act.stateName = "player-run-r";
 		act.stateID = STATE::MOVE_R;
@@ -62,9 +62,9 @@ bool player::init(void)
 		act.repeat = false;
 		act.action = lpAnimCtl.getAction(this,"player-run",true,act.flip);
 		lpMoveCtl.AddActMojule(act.stateName,act);
-	}
+	}*/
 	//左移動
-	{
+	/*{
 		ActMojule act;
 		act.stateName = "player-run-l";
 		act.stateID = STATE::MOVE_L;
@@ -79,14 +79,13 @@ bool player::init(void)
 		act.repeat = false;
 		act.action = lpAnimCtl.getAction(this, "player-run", true, act.flip);
 		lpMoveCtl.AddActMojule(act.stateName, act);	
-	}
+	}*/
 	//右ダッシュ中
 	{
 		ActMojule act;
 		act.stateName = "player-running-r";
 		act.stateID = STATE::MOVE_R;
-		act.whiteList.emplace_back(STATE::IDLE);
-		act.whiteList.emplace_back(STATE::JUMP);
+		act.whiteList.emplace_back(STATE::IDLE_R);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
@@ -94,7 +93,7 @@ bool player::init(void)
 		act.vec = cocos2d::Vec2(1, 0);
 		act.flip = false;
 		act.repeat = false;
-		act.action = nullptr;
+		act.action = lpAnimCtl.getAction(this, "player-run", true, act.flip);;
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
 	//左ダッシュ中
@@ -102,8 +101,7 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-running-l";
 		act.stateID = STATE::MOVE_L;
-		act.whiteList.emplace_back(STATE::IDLE);
-		act.whiteList.emplace_back(STATE::JUMP);
+		act.whiteList.emplace_back(STATE::IDLE_L);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovLR();
@@ -111,29 +109,46 @@ bool player::init(void)
 		act.vec = cocos2d::Vec2(-1, 0);
 		act.flip = true;
 		act.repeat = false;
-		act.action = nullptr;
+		act.action = lpAnimCtl.getAction(this, "player-run", true, act.flip);;
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 	}
-	//待機中
+	//右待機中
 	{
 		ActMojule act;
-		act.stateName = "player-idle";
-		act.stateID = STATE::IDLE;
+		act.stateName = "player-idle-r";
+		act.stateID = STATE::IDLE_R;
 		act.whiteList.emplace_back(STATE::MOVE_L);
 		act.whiteList.emplace_back(STATE::MOVE_R);
-		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
 		act.runAction = MovIdle();
 		act.keyData = std::tuple<PTN, bool, bool>(PTN::NON_KEY, true, true);
 		act.vec = cocos2d::Vec2(0, 0);
+		act.flip = false;
 		act.repeat = false;
-		act.action = lpAnimCtl.getAction(this, act.stateName, true, false);
+		act.action = lpAnimCtl.getAction(this, "player-idle", true, false);
 		lpMoveCtl.AddActMojule(act.stateName, act);	
 		_stateName = act.stateName;
 	}
-	//ジャンプ
+	//左待機中
 	{
+		ActMojule act;
+		act.stateName = "player-idle-l";
+		act.stateID = STATE::IDLE_L;
+		act.whiteList.emplace_back(STATE::MOVE_L);
+		act.whiteList.emplace_back(STATE::MOVE_R);
+		act.actionList.emplace_back(CheckList());
+		act.actionList.emplace_back(CheckHitObj());
+		act.runAction = MovIdle();
+		act.keyData = std::tuple<PTN, bool, bool>(PTN::NON_KEY, true, true);
+		act.vec = cocos2d::Vec2(0, 0);
+		act.flip = true;
+		act.repeat = false;
+		act.action = lpAnimCtl.getAction(this, "player-idle", true, false);
+		lpMoveCtl.AddActMojule(act.stateName, act);
+	}
+	//ジャンプ
+	/*{
 		ActMojule act;
 		act.stateName = "player-jump";
 		act.stateID = STATE::JUMP;
@@ -143,9 +158,9 @@ bool player::init(void)
 		act.repeat = false;
 		act.action = lpAnimCtl.getAction(this, act.stateName, act.repeat, false);
 		lpMoveCtl.AddActMojule(act.stateName, act);
-	}
+	}*/
 	//ジャンプ中
-	{
+	/*{
 		ActMojule act;
 		act.stateName = "player-jumping";
 		act.stateID = STATE::JUMPING;
@@ -159,7 +174,7 @@ bool player::init(void)
 		act.action = nullptr;
 		lpMoveCtl.AddActMojule(act.stateName, act);
 
-	}
+	}*/
 	////落下
 	//{
 	//	ActMojule act;
@@ -171,7 +186,7 @@ bool player::init(void)
 	//	act.stateID = STATE::FALLING;
 	//}
 
-	//runAction(lpMoveCtl.GetActData(_stateName).action);
+	runAction(lpMoveCtl.GetActData(_stateName).action);
 
 	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
 	
@@ -191,8 +206,6 @@ bool player::init(void)
 void player::update(float delta)
 {
 	lpMoveCtl.SetActState((*this),_oprtState);
-
-	//lpMoveCtl.ActUpdate((*this));
 
 	_oprtState->Update();
 
