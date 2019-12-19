@@ -18,8 +18,8 @@ enum class STATE
 {
 	IDLE_R,
 	IDLE_L,
-	JUMP,
-	JUMPING,
+	JUMP_R,
+	JUMP_L,
 	MOVE_R,
 	MOVE_L,
 	RUNNING,
@@ -45,9 +45,9 @@ struct ActMojule
 	std::list<MojuleData> actionList;					//この行動が持っているモジュール
 	MojuleData runAction;								//この行動のメインモジュール
 
-	std::tuple<PTN, bool, bool> keyData;				//対応しているキー情報
+	std::list<std::tuple<PTN, bool, bool>> keyData;		//対応しているキー情報
 	cocos2d::Vec2 vec;									//移動する方向
-	std::map<DIR,RectData> hitRect;						//当たり判定の矩形情報
+	cocos2d::Vec2 hitRect;									//当たり判定の矩形情報
 
 	cocos2d::Action* action;							//アニメーションデータ
 	bool flip;											//反転用フラグ

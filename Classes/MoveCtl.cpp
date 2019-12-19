@@ -46,19 +46,35 @@ bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 	{
 		for (auto act : _actList)
 		{
-			if (act.second.keyData == keyData)
+			for (auto listData : act.second.keyData)
 			{
-				if (CheckList()(sp,act.second))
+				if (listData == keyData)
 				{
-					act.second.runAction(sp, act.second);
-					if (act.second.action != nullptr && !act.second.repeat)
+					if (CheckList()(sp, act.second))
 					{
-						//sp.stopAllActions();
-						lpAnimCtl.runAction(sp, act.second);
-						//sp.runAction(act.second.action);
+						act.second.runAction(sp, act.second);
+						if (act.second.action != nullptr && !act.second.repeat)
+						{
+							lpAnimCtl.runAction(sp, act.second);
+							//sp.runAction(act.second.action);
+						}
 					}
+					CheckHitObj()(sp, act.second);
 				}
 			}
+			//if (act.second.keyData == keyData)
+			//{
+			//	if (CheckList()(sp,act.second))
+			//	{
+			//		act.second.runAction(sp, act.second);
+			//		if (act.second.action != nullptr && !act.second.repeat)
+			//		{
+			//			lpAnimCtl.runAction(sp, act.second);
+			//			//sp.runAction(act.second.action);
+			//		}
+			//	}
+			//	CheckHitObj()(sp, act.second);
+			//}
 		}
 	}
 

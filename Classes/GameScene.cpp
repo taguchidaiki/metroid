@@ -136,7 +136,7 @@ bool GameScene::init()
 	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
 
 	//BGM再生処理
-	lpSoundCtl.PlaySoundData("maoucyber", SND_PTN::BGM);
+	//lpSoundCtl.PlaySoundData("maoucyber", SND_PTN::BGM);
 
 	
 
