@@ -79,7 +79,7 @@ private:
 #define _dgbDrawFormatString(fmt,...)
 #define _dbgDrawPixel(fmt, ...)
 #define _dbgDrawLine(fmt, ...)
-#define _dbgDrawBox(fmt, ...)
+#define _dbgDrawBoxCC(fmt, ...)
 #define _dbgDrawCircle(fmt, ...)
 
 #define _dbgStartGraph

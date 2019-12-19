@@ -51,6 +51,7 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-run-r";
 		act.stateID = STATE::MOVE_R;
+		act.whiteList.emplace_back(STATE::IDLE);
 		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
@@ -67,6 +68,7 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-run-l";
 		act.stateID = STATE::MOVE_L;
+		act.whiteList.emplace_back(STATE::IDLE);
 		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
@@ -83,6 +85,7 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-running-r";
 		act.stateID = STATE::MOVE_R;
+		act.whiteList.emplace_back(STATE::IDLE);
 		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
@@ -99,6 +102,7 @@ bool player::init(void)
 		ActMojule act;
 		act.stateName = "player-running-l";
 		act.stateID = STATE::MOVE_L;
+		act.whiteList.emplace_back(STATE::IDLE);
 		act.whiteList.emplace_back(STATE::JUMP);
 		act.actionList.emplace_back(CheckList());
 		act.actionList.emplace_back(CheckHitObj());
@@ -167,11 +171,11 @@ bool player::init(void)
 	//	act.stateID = STATE::FALLING;
 	//}
 
-	runAction(lpMoveCtl.GetActData(_stateName).action);
+	//runAction(lpMoveCtl.GetActData(_stateName).action);
 
 	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
 	
-	//_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
+	_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	_oprtState = std::make_shared<OPRT_KEY>((*this));

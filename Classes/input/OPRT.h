@@ -7,11 +7,11 @@
 
 enum class PTN
 {
-	NON_KEY,
 	SHOT,
 	JUMP,
 	MOVE_R,
 	MOVE_L,
+	NON_KEY,
 	MAX
 };
 
@@ -43,11 +43,11 @@ protected:
 
 	//cocos2dxのキー情報から必要なものだけ回収したテーブル
 	KEY_TYPE _keyTbl[static_cast<int>(PTN::MAX)] = {
-		KEY_TYPE::KEY_NONE,
 		KEY_TYPE::KEY_Z,
 		KEY_TYPE::KEY_SPACE,
 		KEY_TYPE::KEY_RIGHT_ARROW,
-		KEY_TYPE::KEY_LEFT_ARROW
+		KEY_TYPE::KEY_LEFT_ARROW,
+		KEY_TYPE::KEY_NONE
 	};
 	
 };
