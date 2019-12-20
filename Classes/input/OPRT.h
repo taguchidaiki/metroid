@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cocos2d.h"
 #include <map>
 #include <array>
@@ -7,7 +7,6 @@
 
 enum class PTN
 {
-	SHOT,
 	JUMP,
 	MOVE_R,
 	MOVE_L,
@@ -31,24 +30,18 @@ struct OPRT
 	virtual OPRT_TYPE GetOprtType(void) = 0;
 	virtual void Update() = 0;
 
-	//getŠÖ”
+	//geté–¢æ•°
 	std::array<std::tuple<PTN,bool,bool>, static_cast<int>(PTN::MAX)> key(void) { return _key; };
 	
 protected:
-	//ˆÚ“®•ûŒü‚Ìî•ñ _dir[ˆÚ“®•ûŒü‚ÌƒxƒNƒgƒ‹,‚»‚Ì•ûŒü‚ÉˆÚ“®‚·‚é‚©‚Ç‚¤‚©]
+	//ç§»å‹•æ–¹å‘ã®æƒ…å ± _dir[ç§»å‹•æ–¹å‘ã®ãƒ™ã‚¯ãƒˆãƒ«,ãã®æ–¹å‘ã«ç§»å‹•ã™ã‚‹ã‹ã©ã†ã‹]
 	//std::array<std::pair<cocos2d::Vec2,bool>, static_cast<int>(DIR::MAX)> _key;
 
-	//ƒL[‚Ì“ü—Íî•ñ@_dir[ƒL[‚Ìî•ñ] first oldî•ñ second nowî•ñ
+	//ã‚­ãƒ¼ã®å…¥åŠ›æƒ…å ±ã€€_dir[ã‚­ãƒ¼ã®æƒ…å ±] first oldæƒ…å ± second nowæƒ…å ±
 	std::array<std::tuple<PTN, bool, bool>, static_cast<int>(PTN::MAX)> _key;
 
-	//cocos2dx‚ÌƒL[î•ñ‚©‚ç•K—v‚È‚à‚Ì‚¾‚¯‰ñû‚µ‚½ƒe[ƒuƒ‹
-	KEY_TYPE _keyTbl[static_cast<int>(PTN::MAX)] = {
-		KEY_TYPE::KEY_Z,
-		KEY_TYPE::KEY_SPACE,
-		KEY_TYPE::KEY_RIGHT_ARROW,
-		KEY_TYPE::KEY_LEFT_ARROW,
-		KEY_TYPE::KEY_NONE
-	};
+	std::array<std::tuple<PTN, bool, bool>, static_cast<int>(PTN::MAX)> _input;
+
 	
 };
 

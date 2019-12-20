@@ -1,6 +1,6 @@
-#include "AnimCtl.h"
+ï»¿#include "AnimCtl.h"
 
-//ƒtƒHƒ‹ƒ_–¼AƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒL[–¼AƒAƒjƒ[ƒVƒ‡ƒ“‚ÌŠÔŠu
+//ãƒ•ã‚©ãƒ«ãƒ€åã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼åã€ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®é–“éš”
 void AnimCtl::addAnimation(std::string fileName, std::string key, float animIntval)
 {
 	std::string fileDir = "image/Sprites/" + fileName + "/" + key + "/" + key + ".plist";
@@ -8,7 +8,7 @@ void AnimCtl::addAnimation(std::string fileName, std::string key, float animIntv
 	spriteFrameCache->addSpriteFramesWithFile(fileDir);
 	auto animation = cocos2d::Animation::create();
 
-	//ƒtƒHƒ‹ƒ_‚Ì‘‚´‚ç‚¢ˆ—
+	//ãƒ•ã‚©ãƒ«ãƒ€ã®ç·ã–ã‚‰ã„å‡¦ç†
 	for (int i = 1; i < 15;i++)
 	{
 		std::string tt_str = "-%i.png";
@@ -28,7 +28,7 @@ void AnimCtl::addAnimation(std::string fileName, std::string key, float animIntv
 	cocos2d::AnimationCache::getInstance()->addAnimation(animation, key);
 }
 
-//ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌƒL[–¼AŒp‘±‚µ‚Ä—¬‚·‚©‚Ç‚¤‚©‚Ìƒtƒ‰ƒOA
+//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚­ãƒ¼åã€ç¶™ç¶šã—ã¦æµã™ã‹ã©ã†ã‹ã®ãƒ•ãƒ©ã‚°ã€
 cocos2d::Action * AnimCtl::getAction(cocos2d::Node* sp,std::string key, bool repeat, bool flip)
 {
 	cocos2d::Action* action;

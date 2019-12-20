@@ -1,8 +1,8 @@
-#include "MovLR.h"
+ï»¿#include "MovLR.h"
 
 bool MovLR::operator()(cocos2d::Sprite& sp, ActMojule& act)
 {
-	//sp.runAction(cocos2d::MoveBy::create(1/60.0f,/*Vec2::ˆÚ“®ƒxƒNƒgƒ‹ * float::ˆÚ“®—Ê—v‚ÍƒXƒs[ƒhH*/));
+	//sp.runAction(cocos2d::MoveBy::create(1/60.0f,/*Vec2::ç§»å‹•ãƒ™ã‚¯ãƒˆãƒ« * float::ç§»å‹•é‡è¦ã¯ã‚¹ãƒ”ãƒ¼ãƒ‰ï¼Ÿ*/));
 	sp.setPosition(sp.getPosition() + ((Obj&)sp).speed() * act.vec);
 	((Obj&)sp).stateName(act.stateName);
 	return true;

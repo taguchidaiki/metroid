@@ -1,7 +1,12 @@
-#include "OPRT_TOUCH.h"
+Ôªø#include "OPRT_TOUCH.h"
 
-OPRT_TOUCH::OPRT_TOUCH(cocos2d::Node& sp)
+OPRT_TOUCH::OPRT_TOUCH(cocos2d::Node& sp, const cocos2d::Layer& layer)
 {	
+	for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
+	{
+		std::get<0>(_input[i]) = static_cast<PTN>(i);
+		std::get<2>(_input[i]) = false;
+	}
 	Init(sp);
 }
 
@@ -15,13 +20,14 @@ void OPRT_TOUCH::Init(cocos2d::Node & sp)
 	_ctlTouch->onTouchBegan = [this](cocos2d::Touch *touch, cocos2d::Event* event)
 	{
 		_touchPoint.first = touch->getLocation();
+		std::get<2>(_input[static_cast<int>(PTN::NON_KEY)]) = false;
 		return true;
 	};
 
 	_ctlTouch->onTouchEnded = [this](cocos2d::Touch *touch, cocos2d::Event* event)
 	{
 		_touchPoint.second = touch->getLocation();
-		_moveFlag = true;
+		std::get<2>(_input[static_cast<int>(PTN::NON_KEY)]) = true;
 		return true;
 	};
 
@@ -31,18 +37,9 @@ void OPRT_TOUCH::Init(cocos2d::Node & sp)
 
 void OPRT_TOUCH::Update()
 {
-
-	if (_moveFlag)
+	//„Ç≠„ÉºÊÉÖÂ†±„ÅÆÊñ∞ÊóßÊõ¥Êñ∞Âá¶ÁêÜ
+	for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
 	{
-		//Ç∆ÇËÇ†Ç¶Ç∏ìKìñÇ»íl
-		_vec = (_touchPoint.second - _touchPoint.first) / 10;
-		//sp.setPosition(sp.getPosition() + _vec);
-		count++;
-		if (count >= 10)
-		{
-			count = 0;
-			_vec = cocos2d::Vec2(0, 0);
-			_moveFlag = false;
-		}
+		std::get<1>(_input[i]) = std::get<2>(_input[i]);
 	}
 }

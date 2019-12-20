@@ -103,6 +103,28 @@ bool GameScene::init()
 	pTiled->setName("map");
 	layer->addChild(pTiled,0);
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+	
+#else
+
+#endif
+	////アンドロイド用操作キーの画像
+	//auto android = Layer::create();
+	//android->setName("android");
+	//auto up = cocos2d::Sprite::create("icon/moveIcon.png");
+	//up->setPosition(cocos2d::Vec2(200, 200));
+	//up->setRotation(-90);
+	//android->addChild(up, 0);
+	//auto right = cocos2d::Sprite::create("icon/moveIcon.png");
+	//right->setPosition(cocos2d::Vec2(100, 100));
+	//right->setRotation(180);
+	//android->addChild(right, 0);
+	//auto left = cocos2d::Sprite::create("icon/moveIcon.png");
+	//left->setPosition(cocos2d::Vec2(300, 100));
+	//android->addChild(left, 0);
+
+	//layer->addChild(android, 2);
+
 	//プレイヤー生成
 	auto pl = player::createPlayer();
 	pl->setName("player");
@@ -136,7 +158,7 @@ bool GameScene::init()
 	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
 
 	//BGM再生処理
-	//lpSoundCtl.PlaySoundData("maoucyber", SND_PTN::BGM);
+	lpSoundCtl.PlaySoundData("maoucyber", SND_PTN::BGM);
 
 	
 
@@ -161,8 +183,6 @@ void GameScene::update(float delta)
 {
 	lpEffectCtl.Update();
 	lpSoundCtl.Update();
-
-	count++;
 }
 
 void GameScene::visit(cocos2d::Renderer * renderer, const cocos2d::Mat4 & parentTransform, uint32_t parentFlags)

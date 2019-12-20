@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cocos2d.h"
 #include "input/OPRT.h"
 #include <map>
@@ -31,27 +31,27 @@ enum class STATE
 struct ActMojule;
 
 using MojuleData = std::function<bool(cocos2d::Sprite&, ActMojule &)>;
-//‹éŒ`‚Ì¶ãÀ•WA‰Eã‚ÌÀ•W
+//çŸ©å½¢ã®å·¦ä¸Šåº§æ¨™ã€å³ä¸Šã®åº§æ¨™
 using RectData = std::pair<cocos2d::Vec2, cocos2d::Vec2>;
 
-//s“®‚É‚Â‚©‚¤ƒp[ƒcŒQ
+//è¡Œå‹•ã«ã¤ã‹ã†ãƒ‘ãƒ¼ãƒ„ç¾¤
 struct ActMojule
 {
-	std::string stateName;								//‚±‚Ìs“®‚ğŒÄ‚Ño‚·‚½‚ß‚Ì–¼‘O
-	STATE stateID;										//s“®‚ÌID
-	std::list<STATE> whiteList;							//‹¤‘¶‰Â”\‚ÈIDƒŠƒXƒg
-	std::list<STATE> blackList;							//‹¤‘¶•s‰Â‚ÈID‚ÌƒŠƒXƒg
+	std::string stateName;								//ã“ã®è¡Œå‹•ã‚’å‘¼ã³å‡ºã™ãŸã‚ã®åå‰
+	STATE stateID;										//è¡Œå‹•ã®ID
+	std::list<STATE> whiteList;							//å…±å­˜å¯èƒ½ãªIDãƒªã‚¹ãƒˆ
+	std::list<STATE> blackList;							//å…±å­˜ä¸å¯ãªIDã®ãƒªã‚¹ãƒˆ
 
-	std::list<MojuleData> actionList;					//‚±‚Ìs“®‚ª‚Á‚Ä‚¢‚éƒ‚ƒWƒ…[ƒ‹
-	MojuleData runAction;								//‚±‚Ìs“®‚ÌƒƒCƒ“ƒ‚ƒWƒ…[ƒ‹
+	std::list<MojuleData> actionList;					//ã“ã®è¡Œå‹•ãŒæŒã£ã¦ã„ã‚‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
+	MojuleData runAction;								//ã“ã®è¡Œå‹•ã®ãƒ¡ã‚¤ãƒ³ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«
 
-	std::list<std::tuple<PTN, bool, bool>> keyData;		//‘Î‰‚µ‚Ä‚¢‚éƒL[î•ñ
-	cocos2d::Vec2 vec;									//ˆÚ“®‚·‚é•ûŒü
-	cocos2d::Vec2 hitRect;									//“–‚½‚è”»’è‚Ì‹éŒ`î•ñ
+	std::list<std::tuple<PTN, bool, bool>> keyData;		//å¯¾å¿œã—ã¦ã„ã‚‹ã‚­ãƒ¼æƒ…å ±
+	cocos2d::Vec2 vec;									//ç§»å‹•ã™ã‚‹æ–¹å‘
+	cocos2d::Vec2 hitRect;									//å½“ãŸã‚Šåˆ¤å®šã®çŸ©å½¢æƒ…å ±
 
-	cocos2d::Action* action;							//ƒAƒjƒ[ƒVƒ‡ƒ“ƒf[ƒ^
-	bool flip;											//”½“]—pƒtƒ‰ƒO
-	bool repeat;										//ƒŠƒs[ƒg—pƒtƒ‰ƒO
+	cocos2d::Action* action;							//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ãƒ‡ãƒ¼ã‚¿
+	bool flip;											//åè»¢ç”¨ãƒ•ãƒ©ã‚°
+	bool repeat;										//ãƒªãƒ”ãƒ¼ãƒˆç”¨ãƒ•ãƒ©ã‚°
 
 	ActMojule& operator=(const ActMojule& act)
 	{

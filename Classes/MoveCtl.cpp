@@ -1,4 +1,4 @@
-#include "MoveCtl.h"
+ï»¿#include "MoveCtl.h"
 #include "unit/Obj.h"
 #include "MojuleHeader.h"
 
@@ -41,7 +41,7 @@ bool MoveCtl::SetActState(cocos2d::Sprite& sp, std::weak_ptr<OPRT> oprt)
 {
 	_actList.at(((Obj&)sp).stateName()).runAction(sp, _actList.at(((Obj&)sp).stateName()));
 
-	//ƒL[‚Ì“ü—Íî•ñ‚©‚ç’Ç‰Á‚·‚éƒ‚ƒWƒ…[ƒ‹‚ð‘S‘–¸
+	//ã‚­ãƒ¼ã®å…¥åŠ›æƒ…å ±ã‹ã‚‰è¿½åŠ ã™ã‚‹ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã‚’å…¨èµ°æŸ»
 	for (auto keyData : oprt.lock()->key())
 	{
 		for (auto act : _actList)

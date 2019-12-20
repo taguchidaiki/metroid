@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "MoveCtl.h"
 
 struct CheckList

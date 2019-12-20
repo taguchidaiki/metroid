@@ -1,4 +1,4 @@
-#include "CheckList.h"
+﻿#include "CheckList.h"
 #include "unit/Obj.h"
 
 bool CheckList::operator()(cocos2d::Sprite& sp, ActMojule& act)

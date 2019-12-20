@@ -1,10 +1,10 @@
-#pragma once
+ï»¿#pragma once
 #ifdef _DEBUG
 #include "cocos2d.h"
 #include <memory>
-#include <chrono>		//¸“x‚Í1ms’ö“x
+#include <chrono>		//ç²¾åº¦ã¯1msç¨‹åº¦
 
-//DrawŠÖ”ŒQ
+//Drawé–¢æ•°ç¾¤
 #define _dbgDrawString(fmt, ...) _DebugGraph::GetInstance().DrawString(fmt, __VA_ARGS__);
 #define _dbgDrawFormatString(fmt,...) _DebugGraph::GetInstance().SetScreen();\
 										DxLib::DrawFormatString(fmt,__VA_ARGS__);\
@@ -16,7 +16,7 @@
 #define _dbgDrawCircle(fmt, ...) _DebugGraph::GetInstance().DrawCircle(fmt, __VA_ARGS__);
 
 
-//_DebugGraphİ’èŠÖ”ŒQ
+//_DebugGraphè¨­å®šé–¢æ•°ç¾¤
 #define _dbgStartGraph		_DebugGraph::GetInstance().StartDbgGraph();
 #define _dbgAddScreen		_DebugGraph::GetInstance().AddDbgScreen();
 #define _dbgSetUpGraph(A)	_DebugGraph::GetInstance().SetUpGraph(A);

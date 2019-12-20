@@ -1,10 +1,10 @@
 ﻿#include "player.h"
 #include "MojuleHeader.h"
-#if(CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+
 #include "input/OPRT_KEY.h"
-#else
+
 #include "input/OPRT_TOUCH.h"
-#endif
+
 
 player::player()
 {	
@@ -241,14 +241,18 @@ bool player::init(void)
 
 	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
 	
+#ifdef _DEBUG
 	_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
+#else
+#endif
+	
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	_oprtState = std::make_shared<OPRT_KEY>((*this));
 #else
-	_oprtState = std::make_shared<OPRT_TOUCH>((*this));
 #endif
-
+	
+	
 	this->scheduleUpdate();
 
 
@@ -257,6 +261,12 @@ bool player::init(void)
 
 void player::update(float delta)
 {
+	/*if (_oprtState == nullptr)
+	{
+		auto director = cocos2d::Director::getInstance();
+		auto touchLayer = (cocos2d::Layer*)director->getRunningScene()->getChildByName("hitObj")->getChildByName("android");
+		_oprtState = std::make_shared<OPRT_TOUCH>((*this));
+	}*/
 	lpMoveCtl.SetActState((*this),_oprtState);
 
 	_oprtState->Update();
@@ -279,14 +289,14 @@ void player::update(float delta)
 	//	runAction(flip);
 	//}
 
-	//auto director = Director::getInstance();
-	//auto  hitScene = (TMXTiledMap*)director->getRunningScene()->getChildByName("hitObj")->getChildByName("map");
+	//auto director = cocos2d::Director::getInstance();
+	//auto  hitScene = (cocos2d::TMXTiledMap*)director->getRunningScene()->getChildByName("hitObj")->getChildByName("map");
 	//auto hitNode = hitScene->getLayer("field");
 	//for (unsigned int y = 0; y < hitNode->getLayerSize().height; y++)
 	//{
 	//	for (unsigned int x = 0; x < hitNode->getLayerSize().width; x++)
 	//	{
-	//		if (auto checkObj = (TMXTiledMap*)hitNode->getTileAt(Vec2(x, y)))
+	//		if (auto checkObj = (cocos2d::TMXTiledMap*)hitNode->getTileAt(cocos2d::Vec2(x, y)))
 	//		{
 	//			//簡易当たり判定処理
 	//			if ((checkObj->getPosition().x <= getPosition().x + _rect.size.width / 2)

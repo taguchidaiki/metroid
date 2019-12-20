@@ -1,4 +1,4 @@
-#include "OPRT_KEY.h"
+ï»¿#include "OPRT_KEY.h"
 
 OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
 {
@@ -13,7 +13,7 @@ OPRT_KEY::OPRT_KEY(cocos2d::Node& sp)
 
 void OPRT_KEY::Init(cocos2d::Node& sp)
 {
-	//ƒL[‚ª‰Ÿ‚³‚ê‚½‚Æ‚«‚ÌƒCƒxƒ“ƒgî•ñ
+	//ã‚­ãƒ¼ãŒæŠ¼ã•ã‚ŒãŸã¨ãã®ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±
 	auto ctlKey = cocos2d::EventListenerKeyboard::create();
 	ctlKey->onKeyPressed = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
 		for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
@@ -29,7 +29,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 		return true;
 	};
 
-	//ƒL[‚©‚ç—£‚ê‚½‚ÌƒCƒxƒ“ƒgî•ñ
+	//ã‚­ãƒ¼ã‹ã‚‰é›¢ã‚ŒãŸæ™‚ã®ã‚¤ãƒ™ãƒ³ãƒˆæƒ…å ±
 	ctlKey->onKeyReleased = [this](cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event* event) {
 		for (int i = 0; i < static_cast<int>(PTN::MAX); i++)
 		{
@@ -47,7 +47,7 @@ void OPRT_KEY::Init(cocos2d::Node& sp)
 
 void OPRT_KEY::Update()
 {
-	//ƒL[î•ñ‚ÌV‹ŒXVˆ—
+	//ã‚­ãƒ¼æƒ…å ±ã®æ–°æ—§æ›´æ–°å‡¦ç†
 	for(int i = 0; i < static_cast<int>(PTN::MAX);i++)
 	{
 		std::get<1>(_key[i]) = std::get<2>(_key[i]);

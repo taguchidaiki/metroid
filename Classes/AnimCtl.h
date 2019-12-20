@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cocos2d.h"
 #include "MoveCtl.h"
 #include <map>
@@ -15,13 +15,13 @@ public:
 		return getInstance;
 	}
 
-	//ƒAƒjƒ[ƒVƒ‡ƒ“‚Ì’Ç‰Áˆ—
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¿½åŠ å‡¦ç†
 	void addAnimation(std::string fileName, std::string key, float animIntval);
 	
-	//ƒAƒNƒVƒ‡ƒ“‚ğó‚¯“n‚·ˆ—
+	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã‚’å—ã‘æ¸¡ã™å‡¦ç†
 	cocos2d::Action* getAction(cocos2d::Node* sp,std::string key, bool repeat, bool flip);
 
-	//ƒAƒNƒVƒ‡ƒ“‹N“®ˆ—
+	//ã‚¢ã‚¯ã‚·ãƒ§ãƒ³èµ·å‹•å‡¦ç†
 	void runAction(cocos2d::Sprite& sp, ActMojule& act);
 	
 private:

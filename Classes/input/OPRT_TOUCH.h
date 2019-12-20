@@ -1,12 +1,12 @@
-#pragma once
+ï»¿#pragma once
 #include "OPRT.h"
 
 struct OPRT_TOUCH :public OPRT
 {
-	OPRT_TOUCH(cocos2d::Node& sp);
+	OPRT_TOUCH(cocos2d::Node& sp, const cocos2d::Layer& layer);
 	~OPRT_TOUCH();
 
-	//“ü—Íƒ^ƒCƒv::ƒ^ƒbƒ`
+	//å…¥åŠ›ã‚¿ã‚¤ãƒ—::ã‚¿ãƒƒãƒ
 	OPRT_TYPE GetOprtType() override { return OPRT_TYPE::TOUCH;  };
 
 	void Init(cocos2d::Node& sp) override;

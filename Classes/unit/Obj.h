@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cocos2d.h"
 #include "AnimCtl.h"
 #include "MoveCtl.h"
@@ -22,34 +22,34 @@ public:
 	bool init(void) = 0;
 	void update(float delta) = 0;
 
-	//getŠÖ”
+	//geté–¢æ•°
 	const float speed(void) { return _speed; };
 	const std::string& stateName(void) { return _stateName; }
 	const cocos2d::Vec2& gravity(void) { return _gravity; }
 	
-	//setŠÖ”
+	//seté–¢æ•°
 	void speed(float speed) { _speed = speed; };
 	void stateName(std::string stateName) { _stateName = stateName; }
 	void gravity(cocos2d::Vec2 gravity) { _gravity = gravity; }
 
 protected:
-	//ƒL[“ü—Íƒ‚ƒWƒ…[ƒ‹—p
+	//ã‚­ãƒ¼å…¥åŠ›ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ç”¨
 	std::shared_ptr<OPRT> _oprtState;
 
 	
-	//ƒAƒjƒ[ƒVƒ‡ƒ“—pƒ|ƒCƒ“ƒ^•Ï”
+	//ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ãƒã‚¤ãƒ³ã‚¿å¤‰æ•°
 	cocos2d::Action* _action;
 
-	//ƒIƒuƒWƒFƒNƒg‚ÌˆÚ“®‘¬“x
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ç§»å‹•é€Ÿåº¦
 	float _speed;
 
-	//ƒIƒuƒWƒFƒNƒg‚É‘Î‚·‚éd—Í
+	//ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«å¯¾ã™ã‚‹é‡åŠ›
 	cocos2d::Vec2 _gravity;
 
-	//ƒLƒƒƒ‰‚Ìs“®—p‚Ì–¼‘O
+	//ã‚­ãƒ£ãƒ©ã®è¡Œå‹•ç”¨ã®åå‰
 	std::string _stateName;
 
-	////”½“]—p‚Ìƒtƒ‰ƒO
+	////åè»¢ç”¨ã®ãƒ•ãƒ©ã‚°
 	bool _flip;
 
 	//std::string _oldStateName;
