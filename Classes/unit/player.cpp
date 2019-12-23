@@ -240,6 +240,7 @@ bool player::init(void)
 	runAction(lpMoveCtl.GetActData(_stateName).action);
 
 	lpSoundCtl.AddSoundData("maougan", SND_PTN::SE, 2.0f, 1.0f, 0, 0.0f, 0);
+	lpEffectCtl.AddEffect("Laser01",2.0f);
 	
 #ifdef _DEBUG
 	_dbgDrawBoxCC((*this), cocos2d::Color4F::WHITE);
@@ -261,12 +262,13 @@ bool player::init(void)
 
 void player::update(float delta)
 {
-	/*if (_oprtState == nullptr)
+	if (_oprtState == nullptr)
 	{
 		auto director = cocos2d::Director::getInstance();
 		auto touchLayer = (cocos2d::Layer*)director->getRunningScene()->getChildByName("hitObj")->getChildByName("android");
-		_oprtState = std::make_shared<OPRT_TOUCH>((*this));
-	}*/
+		_oprtState = std::make_shared<OPRT_TOUCH>((*this),(*touchLayer));
+	}
+
 	lpMoveCtl.SetActState((*this),_oprtState);
 
 	_oprtState->Update();

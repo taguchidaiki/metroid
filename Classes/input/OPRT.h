@@ -39,9 +39,6 @@ protected:
 
 	//キーの入力情報　_dir[キーの情報] first old情報 second now情報
 	std::array<std::tuple<PTN, bool, bool>, static_cast<int>(PTN::MAX)> _key;
-
-	std::array<std::tuple<PTN, bool, bool>, static_cast<int>(PTN::MAX)> _input;
-
 	
 };
 

@@ -3,7 +3,7 @@
 
 struct OPRT_TOUCH :public OPRT
 {
-	OPRT_TOUCH(cocos2d::Node& sp, const cocos2d::Layer& layer);
+	OPRT_TOUCH(cocos2d::Node& sp, cocos2d::Layer& layer);
 	~OPRT_TOUCH();
 
 	//入力タイプ::タッチ
@@ -14,8 +14,9 @@ struct OPRT_TOUCH :public OPRT
 
 private:
 	std::pair<cocos2d::Point, cocos2d::Point> _touchPoint;
-	cocos2d::Vec2 _vec;
-	bool _moveFlag;
-	int count = 0;
+
+	//cocos2dxのキー情報から必要なものだけ回収したテーブル
+	cocos2d::Node* _touchTbl[static_cast<int>(PTN::MAX)];
+
 };
 
